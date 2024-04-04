@@ -24,12 +24,9 @@ async function dbConnect() {
   }
   if (!cached.promise) {
     const opts = {
-      useNewUrlParser: true,
       bufferCommands: false,
     };
-    console.log('MONGODB_URI is', MONGODB_URI);
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      console.log('Connected to MongoDB');
       return mongoose;
     });
   }

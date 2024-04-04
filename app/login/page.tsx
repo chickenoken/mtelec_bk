@@ -43,19 +43,14 @@ async function login(formData: FormData): Promise<ActionResult> {
 		};
 	}
 
-	console.log("Connecting to database");
   await dbConnect();
-
-	console.log("Finding user", username);
 	const existingUser = await User.findOne({ username });
-	console.log("existingUser", existingUser);
 
 	if (!existingUser) {
 		return {
 			error: "Incorrect username or password"
 		};
 	}
-	console.log("Verifying password");
 	const validPassword = await new Argon2id().verify(existingUser.password, password);
 	if (!validPassword) {
 		return {
@@ -64,7 +59,6 @@ async function login(formData: FormData): Promise<ActionResult> {
 	}
 
   const session = await lucia.createSession(existingUser._id, {});
-	console.log("session", session);
   const sessionCookie = lucia.createSessionCookie(session.id);
 	cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
 	return redirect("/admin");
