@@ -2,32 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url('https://fonts.googleapis.com/css2?family=Trirong:wght@100&display=swap');
+
+.trilong {
+  font-family: 'Trirong', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.bg-mte {
+  background: linear-gradient(to left, #2b6cb0, #68d391, #38a169);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bg2-mte {
+  background: linear-gradient(to left, #00bcd4, #38b2ac, #27ae60);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.mte-grey{
+  background: linear-gradient(to left, #d1d5db, #f3f4f6, #d1d5db);
+}
+
+.mte-grey:hover{
+  background: linear-gradient(to left, #00bcd4, #38b2ac, #27ae60);
+  color: white;
+}
+
+.grey{
+  background: linear-gradient(to left, #d1d5db, #f3f4f6, #d1d5db);
+}
+
+.txt-mte {
+  background: linear-gradient(266.22deg, #00B6D7 -6.05%, #4ABEA6 26.45%, #33AF4A 80.61%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.slick-track{
+  display: flex!important;
+  align-items: center!important;;
+}
+
+.slick-prev:before{
+  content: '' !important;
+}
+.slick-next:before{
+  content: '' !important;
+}
+
+ol, ul {
+  list-style: initial;
+  margin: initial;
+  padding: initial;
 }
