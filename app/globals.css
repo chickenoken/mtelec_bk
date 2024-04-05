@@ -48,6 +48,19 @@
   content: '' !important;
 }
 
+#nprogress .bar {
+  background: linear-gradient(to left, #2b6cb0, #68d391, #38a169) !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #FFBB00;
+  border-left-color: #FFBB00;
+}
+
 ol, ul {
   list-style: initial;
   margin: initial;

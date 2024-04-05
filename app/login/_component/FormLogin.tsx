@@ -5,16 +5,25 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { login } from './LoginAction';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const schema = z.object({
   username: z.string().min(4),
   password: z.string().min(4),
 });
 const FormLogin = () => {
-  const { register, getValues, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
 
   const subLogin = async (data: any) => {
     const result = await login(data);
+    if(result && result.error) {
+      toast.error(result.error, {
+        closeOnClick: true,
+        draggable: true,
+        theme: "colored",
+      });
+    }
   }
 
   return (
@@ -25,10 +34,11 @@ const FormLogin = () => {
         {errors.username && <Typography variant="caption" color={'red'}>{errors.username?.message}</Typography>}
         <TextField margin="normal" required fullWidth label="Password" type="password" id="password" autoComplete="current-password" {...register('password')} />
         {/* @ts-ignore */}
-        {errors.password && <Typography variant="caption" color={'red'}>{errors.password.message}</Typography>}
+        {errors.password && <Typography variant="caption" color={'red'}>{errors.password?.message}</Typography>}
         <Button type="submit" fullWidth color="secondary" variant="outlined" sx={{ mt: 3, mb: 2 }}>
           Sign In
         </Button>
+        <ToastContainer />
       </Box>
     </>
   )
