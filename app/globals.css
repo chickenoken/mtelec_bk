@@ -66,3 +66,24 @@ ol, ul {
   margin: initial;
   padding: initial;
 }
+
+.swal2-container {
+  z-index: 10000;
+}
+
+@keyframes nyan-cat-animation {
+  0% { background-position: left top; }
+  100% { background-position: right top; }
+}
+
+.nyan-cat::after {
+  content: "";
+  background: rgba(0,0,123,0.4) url("/nyan-cat-nyan.gif") no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  animation: nyan-cat-animation 5s linear infinite;
+}
