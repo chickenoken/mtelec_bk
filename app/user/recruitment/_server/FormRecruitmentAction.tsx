@@ -8,6 +8,12 @@ export const getRecruitById = async (data: any) => {
     return JSON.parse(JSON.stringify(re));
 }
 
+export const getRecruitByBoth = async (data: any) => {
+  await dbConnect();
+  let re = await Recruitment.find({ id_recruitment: data.id }).sort({ language: 1 });
+  return JSON.parse(JSON.stringify(re));
+}
+
 export const saveRecruit = async (data: any) => {
     await dbConnect();
     let re = new Recruitment();

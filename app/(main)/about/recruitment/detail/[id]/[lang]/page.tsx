@@ -7,7 +7,7 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { BsDot } from "react-icons/bs";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { MdChevronRight } from "react-icons/md";
-import { getRecruitById } from "@app/user/recruitment/_server/FormRecruitmentAction";
+import { getRecruitByBoth } from "@app/user/recruitment/_server/FormRecruitmentAction";
 import FormApplyRecruit from "../../../_component/FormApplyRecruit";
 
 const page = ({ params }: { params: { id: string, lang: string } }) => {
@@ -53,10 +53,10 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
     let data = {
       id: params.id
     }
-    let rs = await getRecruitById(data);
+    let rs = await getRecruitByBoth(data);
     if(rs){
       if(rs.length < 2) rs = rs.concat(rs);
-      setRecruitment(data);
+      setRecruitment(rs);
       let mode = params.lang == 'en' ? 0 : 1;
       setMode(mode);
       setTitle(rs[mode].title);

@@ -30,3 +30,17 @@ export const getNewOther = async () => {
   }
   return JSON.parse(JSON.stringify(ne));
 }
+
+export const getNewOtherDetail = async (data: any) => {
+  await dbConnect();
+  let ne = await News.find({ _id: { $ne: data.id } }).sort({updatedAt: -1});
+
+  for (let i = 0; i < ne.length; i++) {
+      const nf = await NewFile.find({ id_news: ne[i]._id }).sort({createdAt: 1 }).limit(1);
+      if (nf && nf.length > 0) {
+          ne[i] = ne[i].toObject();
+          ne[i]['file'] = nf[0].file;
+      }
+  }
+  return JSON.parse(JSON.stringify(ne));
+}

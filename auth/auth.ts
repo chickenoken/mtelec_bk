@@ -33,7 +33,9 @@ export const validateRequest = cache(
     }
 
     await dbConnect();
+    console.log('sessionId', sessionId);
     const result = await lucia.validateSession(sessionId);
+    console.log('result', result);
     try {
       if (result.session && result.session.fresh) {
         const sessionCookie = lucia.createSessionCookie(result.session.id);

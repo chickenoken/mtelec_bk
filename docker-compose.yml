@@ -33,6 +33,7 @@ services:
     ports:
       - '80:80'
     restart: always
+# docker build -t my_nginx_image -f Dockerfile.nginx .
 
 volumes:
   mongodb_data:

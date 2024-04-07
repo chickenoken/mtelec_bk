@@ -66,7 +66,7 @@ const RecruitmentList = () => {
                 </CardActionArea>
               </Link>
               {item.data[1] ? (
-              <Link href={`/about/recruitment/detail/${item.data[0].id_recruitment}/${item.data[0].language}`}>
+              <Link href={`/about/recruitment/detail/${item.data[1].id_recruitment}/${item.data[1].language}`}>
                 <CardActionArea>
                   <Box display="flex" alignItems="center" justifyContent="space-between">
                     <Typography variant="h5" component="div" className="txt-mte font-bold">

@@ -9,6 +9,7 @@ import { MdChevronRight } from "react-icons/md";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { getNewById } from "@app/user/news/_server/FormNewsAction";
 import { getAllNewFile } from "@app/user/news/_server/FormNewFileAction";
+import { getNewOtherDetail } from "../../_server/NewsAction";
 
 interface MainNew {
   file: string;
@@ -35,7 +36,7 @@ const page = ({ params }: { params: { id: string } }) => {
     const nf = await getAllNewFile({id_news: params.id});
     if(nf) setNewFile(nf);
 
-    const no = await getAllNewFile({id_news: params.id});
+    const no = await getNewOtherDetail({id: params.id});
     if(no) setOther(no);
   }
 
@@ -90,8 +91,8 @@ const page = ({ params }: { params: { id: string } }) => {
             </AnimUp>
             <Box className="mt-4">
               {newFile?.map((item, index) => (
-                <AnimUp>
-                <Card key={item._id} className="mb-4">
+                <AnimUp key={item._id} >
+                <Card className="mb-4">
                   <CardActionArea>
                     <CardMedia
                       component="img"

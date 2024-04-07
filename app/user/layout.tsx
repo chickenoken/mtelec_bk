@@ -23,9 +23,9 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const { user } = await validateRequest();
-	if (!user) {
-		return redirect("/login");
-	}
+	// if (!user) {
+	// 	return redirect("/login");
+	// }
   return (
     <StyledEngineProvider injectFirst>
       <CssBaseline />
