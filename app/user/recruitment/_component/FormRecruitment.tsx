@@ -13,7 +13,7 @@ import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 import { useRouter } from "next-nprogress-bar"
 import { DialogService } from "@lib/DialogService"
-import { AlertService } from "@lib/AlertService"
+import { toast } from "react-toastify"
 
 const schema = z.object({
   deadline: z.string().nullable(),
@@ -62,7 +62,7 @@ const FormRecruitment = ({ params }: { params: { id: string|null, language: stri
 
   const handleSave = async () => {
     let valid = await trigger();
-    if(!valid) return AlertService.warn('Validate Failed');
+    if(!valid) return toast.warn('Validate Failed');
 
     DialogService.save("Do you want to save the changes ?", async () => {
       let param = getValues();
@@ -77,7 +77,7 @@ const FormRecruitment = ({ params }: { params: { id: string|null, language: stri
 
   const handleUpdate = async () => {
     let valid = await trigger();
-    if(!valid) return AlertService.warn('Validate Failed');
+    if(!valid) return toast.warn('Validate Failed');
 
     DialogService.save("Do you want to save the changes ?", async () => {
       let param = getValues();
@@ -101,6 +101,7 @@ const FormRecruitment = ({ params }: { params: { id: string|null, language: stri
         language: newAlignment
       }
       getDataById(param);
+      toast.success('Change language success');
     });
   }
 

@@ -1,10 +1,6 @@
 import mongoose, { Schema as MongooseSchema, Document } from 'mongoose';
 
 const ProjectSchema: MongooseSchema = new mongoose.Schema({
-  id_project: {
-    type: Number,
-    required: true
-  },
   project_name: {
     type: String,
     required: true
@@ -32,7 +28,6 @@ const ProjectSchema: MongooseSchema = new mongoose.Schema({
 },{timestamps: true});
 
 interface IProject extends Document {
-  id_project: number;
   project_name: string;
   image: String;
   logo: String;

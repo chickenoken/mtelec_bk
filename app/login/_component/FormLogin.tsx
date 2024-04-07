@@ -8,7 +8,6 @@ import { login } from './LoginAction';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next-nprogress-bar';
-import { AlertService } from '@lib/AlertService';
 
 const schema = z.object({
   username: z.string().min(4),
@@ -21,9 +20,10 @@ const FormLogin = () => {
   const subLogin = async (data: any) => {
     const result = await login(data);
     if(result && result.error) {
-      AlertService.error(result.error);
+      toast.error(result.error);
+    }else{
+      router.push("/user");
     }
-    router.push("/user");
   }
 
   return (
@@ -38,7 +38,18 @@ const FormLogin = () => {
         <Button type="submit" fullWidth color="secondary" variant="outlined" sx={{ mt: 3, mb: 2 }}>
           Sign In
         </Button>
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="colored"
+          />
       </Box>
     </>
   )

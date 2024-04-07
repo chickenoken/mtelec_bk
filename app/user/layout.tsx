@@ -48,7 +48,18 @@ export default async function DashboardLayout({
         </Box>
       </Box>
       </NProgress>
-      <ToastContainer autoClose={1000} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="colored"
+        />
     </StyledEngineProvider>
   );
 }

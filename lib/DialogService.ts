@@ -19,19 +19,9 @@ export const DialogService = {
       if (result.isConfirmed) {
         try {
           await onSuccess();
-          toast.success('Deleted!', {
-            closeOnClick: true,
-            draggable: true,
-            theme: "colored",
-            autoClose: 1000
-          });
+          toast.success('Deleted!');
         } catch (error) {
-          toast.error('An error occurred!', {
-            closeOnClick: true,
-            draggable: true,
-            theme: "colored",
-            autoClose: 1000
-          });
+          toast.error('An error occurred!');
         }
       }
     });
@@ -55,12 +45,7 @@ export const DialogService = {
           await onSuccess();
         }
       } catch (error) {
-        toast.error('An error occurred!', {
-          closeOnClick: true,
-          draggable: true,
-          theme: "colored",
-          autoClose: 1000
-        });
+        toast.error('An error occurred!');
       }
     })
   },
@@ -86,19 +71,10 @@ export const DialogService = {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await onSuccess();
-        toast.success('Confirmed!', {
-          closeOnClick: true,
-          draggable: true,
-          theme: "colored",
-        });
       }
       if(result.isDismissed && onCancel) {
         await onCancel();
-        toast.error('Canceled!', {
-          closeOnClick: true,
-          draggable: true,
-          theme: "colored",
-        });
+        toast.error('Canceled!');
       }
     });
   },
