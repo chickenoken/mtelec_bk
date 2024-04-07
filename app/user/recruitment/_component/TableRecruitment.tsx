@@ -6,7 +6,9 @@ import { MdEditSquare } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import { getAllRecruitment } from "../_server/TableRecruitmentAction";
+import { delRecruitment, getAllRecruitment } from "../_server/TableRecruitmentAction";
+import { toast } from "react-toastify";
+import { DialogService } from "@lib/DialogService";
 
 const TableRecruitment = () => {
   const [page, setPage] = useState(0);
@@ -23,20 +25,12 @@ const TableRecruitment = () => {
   };
 
   const handleDel = async (id : string) => {
-    Swal.fire({
-      title: "Do you want to delete the changes ?",
-      color: "#716add",
-      confirmButtonText: "Delete",
-      confirmButtonColor: "#d33",
-      showCancelButton: true,
-      backdrop: `
-        rgba(0,0,123,0.4)
-        url("/nyan-cat-nyan.gif")
-        top
-        no-repeat
-      `
+    DialogService.del("Do you want to delete the changes ?", async () => {
+      let res = await delRecruitment(id);
+      if(res.status == 200){
+        getRecruiment();
+      }
     });
-
   }
 
   const getRecruiment = async () => {
@@ -76,7 +70,7 @@ const TableRecruitment = () => {
                 <TableCell>{format(new Date(row.deadline), 'yyyy/MM/dd')}</TableCell>
                 <TableCell>{format(new Date(row.createdAt), 'yyyy/MM/dd HH:mm:ss')}</TableCell>
                 <TableCell size="small" width="20px">
-                  <Link href={`/user/recruitment/detail/${row.id_recruitment}`}>
+                  <Link href={`/user/recruitment/detail/${row.id_recruitment}/${row.language}`}>
                     <IconButton color="primary">
                       <MdEditSquare />
                     </IconButton>

@@ -5,6 +5,11 @@ import Recruitment from "@model/Recruitment";
 export const getAllRecruitment = async () => {
   await dbConnect();
   const pro = await Recruitment.find({});
-  let result = JSON.parse(JSON.stringify(pro));
-  return result;
+  return JSON.parse(JSON.stringify(pro));
+}
+
+export const delRecruitment = async (id: any) => {
+  await dbConnect();
+  await Recruitment.deleteMany({ id_recruitment : id });
+  return {status : 200};
 }

@@ -4,48 +4,54 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FaRegSave } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
-import { getRecruitById, saveRecruit } from "../_server/FormRecruitmentAction"
+import { getRecruitById, saveRecruit, updateRecruit } from "../_server/FormRecruitmentAction"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
-import { toast } from "react-toastify"
-import Swal from "sweetalert2"
 import { useRouter } from "next-nprogress-bar"
+import { DialogService } from "@lib/DialogService"
+import { AlertService } from "@lib/AlertService"
 
 const schema = z.object({
-  deadline: z.date().nullable(),
+  deadline: z.string().nullable(),
   quantity: z.string().min(4),
   title: z.string().min(4),
-  workingTime: z.string().min(4),
+  work_time: z.string().min(4),
   gender: z.string().min(4),
-  workingForm: z.string().min(4),
+  work_form: z.string().min(4),
   education: z.string().min(4),
-  workingPlace: z.string().min(4),
+  work_place: z.string().min(4),
   experience: z.string().min(4),
   salary: z.string().min(4),
-  jobDescription: z.string().min(4),
+  job_description: z.string().min(4),
   requirement: z.string().min(4),
   benefit: z.string().min(4),
   document: z.string().min(4),
-  contactInformation: z.string().min(4),
+  contact: z.string().min(4),
   language: z.string().min(2),
 });
 
-const FormRecruitment = ({ params }: { params: { id: string|null, lang: string|null } }) => {
-  const { register, watch, control, trigger, getValues, setValue, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
+const FormRecruitment = ({ params }: { params: { id: string|null, language: string|null } }) => {
+  const { register, watch, reset, control, trigger, getValues, setValue, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
+  const [language, setLanguage] = useState(params.language ?? 'en');
   const router = useRouter();
 
   const getDataById = async (param : any) =>{
-    console.log(params);
-    setValue('language', param.lang ? param.lang : 'en');
+    setValue('language', param.language ?? 'en');
     if(params.id) {
+      setValue("id_recruitment", params.id);
       let rs = await getRecruitById(param);
       if(rs){
-        console.log(rs);
-      }
+        for (const [key, value] of Object.entries(rs)) {
+          setValue(key, value);
+        }
+      }else{
+        reset();
+        setValue("id_recruitment", params.id);
+      };
     }
   }
 
@@ -56,68 +62,47 @@ const FormRecruitment = ({ params }: { params: { id: string|null, lang: string|n
 
   const handleSave = async () => {
     let valid = await trigger();
-    if(!valid){
-      return toast.warn('Validate Failed', {
-        closeOnClick: true,
-        draggable: true,
-        theme: "colored",
-      });
-    }
-    Swal.fire({
-      title: "Do you want to save the changes ?",
-      color: "#716add",
-      confirmButtonText: "Save",
-      showCancelButton: true,
-      backdrop: `
-        rgba(0,0,123,0.4)
-        url("/nyan-cat-nyan.gif")
-        top
-        no-repeat
-      `
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        let param = getValues();
-        let re = await saveRecruit(param);
-        if(re.status === 200){
-          Swal.fire({
-            icon: "success",
-            title: "Your data has been saved",
-            showConfirmButton: false,
-            timer: 1500
-          }).then(() => {
-            router.push('/user/recruitment');
-          });
-        }else{
-          toast.error('Save fail', {
-            closeOnClick: true,
-            draggable: true,
-            theme: "colored",
-          });
-        }
+    if(!valid) return AlertService.warn('Validate Failed');
+
+    DialogService.save("Do you want to save the changes ?", async () => {
+      let param = getValues();
+      let re = await saveRecruit(param);
+      if(re.status === 200){
+        DialogService.success('Your data has been saved', () => {
+          router.push('/user/recruitment');
+        });
       }
     });
   }
 
   const handleUpdate = async () => {
-    trigger();
+    let valid = await trigger();
+    if(!valid) return AlertService.warn('Validate Failed');
 
-
-    console.log('update');
+    DialogService.save("Do you want to save the changes ?", async () => {
+      let param = getValues();
+      let re = await updateRecruit(param);
+      if(re.status === 200){
+        DialogService.success('Your data has been saved', () => {
+          router.push('/user/recruitment');
+        });
+      }
+    });
   }
 
-  const handleLanguage = (event: React.MouseEvent<HTMLElement>, newLanguage: string | null) => {
-    console.log(newLanguage);
+  const handleLanguage = (e: any) => {
+    const newAlignment = e.target.value;
+    if (newAlignment == language) return;
+    DialogService.confirm("Do you want to langue?", async () => {
+      setValue('language', newAlignment);
+      setLanguage(newAlignment);
+      let param = {
+        id: params.id,
+        language: newAlignment
+      }
+      getDataById(param);
+    });
   }
-
-
-  const language = watch('language');
-
-  useEffect(() => {
-    console.log(language);
-  }, [language]);
-
-
-
 
   return (
     <>
@@ -131,60 +116,57 @@ const FormRecruitment = ({ params }: { params: { id: string|null, lang: string|n
           <Box className="text-end">
             <ToggleButtonGroup
               color="warning"
-              value={language}
               exclusive
+              value={language}
               aria-label="text alignment"
               {...register('language')}
+              onClick={handleLanguage}
             >
               <ToggleButton value="en" aria-label="left aligned">En</ToggleButton>
               <ToggleButton value="vi" aria-label="left aligned">Vi</ToggleButton>
             </ToggleButtonGroup>
           </Box>
-
           <Box display="flex" gap="10px" className="mb-2">
             <Controller
-                name="deadline"
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                  <DatePicker
-                    label="Complete Time"
-                    className="w-44 mb-2"
-                    slotProps={{ 
-                      textField: { 
-                        size: 'small',
-                        error: Boolean(errors.deadline) 
-                      } 
-                    }}
-                    value={value ? new Date(value) : null}
-                    onChange={onChange}
-                    />
-                )}
-              />
+              name="deadline"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <DatePicker
+                  label="Complete Time"
+                  className="w-44 mb-2"
+                  slotProps={{ 
+                    textField: { 
+                      size: 'small',
+                      error: Boolean(errors.deadline) 
+                    } 
+                  }}
+                  value={value ? new Date(value) : null}
+                  onChange={(date) => onChange(date ? date.toISOString() : null)}
+                />
+              )}
+            />
             <Box display="flex" flexDirection="column">
-              <TextField error={Boolean(errors.quantity)} {...register('quantity')} label="quantity" variant="outlined" size="small"/>
+              <TextField InputLabelProps={{ shrink: !!watch('quantity') }} error={Boolean(errors.quantity)} {...register('quantity')} label="quantity" variant="outlined" size="small"/>
               {/* @ts-ignore */}
               {errors.quantity && <Typography variant="caption" color={'red'}>{errors.quantity?.message}</Typography>}
             </Box>
           </Box>
-
           <Typography variant="h6" className="mb-2">Main Description</Typography>
 
           <Grid container spacing={2} className="mb-2">
             <Grid xs={5}>
-              <TextField error={Boolean(errors.title)} {...register('title')} label="Occupation" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('title') }} error={Boolean(errors.title)} {...register('title')} label="Occupation" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
               {errors.title && <Typography variant="caption" color={'red'}>{errors.title?.message}</Typography>}
             </Grid>
             <Grid xs={5}>
-              <TextField error={Boolean(errors.workingTime)} {...register('workingTime')} label="Working time" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('work_time') }} error={Boolean(errors.work_time)} {...register('work_time')} label="Working time" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
-              {errors.workingTime && <Typography variant="caption" color={'red'}>{errors.workingTime?.message}</Typography>}
+              {errors.work_time && <Typography variant="caption" color={'red'}>{errors.work_time?.message}</Typography>}
             </Grid>
             <Grid xs={5}>
             <FormControl fullWidth size="small">
               <InputLabel id="gender">Gender</InputLabel>
-
-
               <Controller
                 name="gender"
                 control={control}
@@ -204,70 +186,61 @@ const FormRecruitment = ({ params }: { params: { id: string|null, lang: string|n
                   </Select>
                 )}
               />
-
-
-              {/* <Select error={Boolean(errors.gender)} {...register('gender')} labelId="gender" label="gender">
-                <MenuItem></MenuItem>
-                {language === 'en' && <MenuItem value='male'>male</MenuItem>}
-                {language === 'en' && <MenuItem value='female'>female</MenuItem>}
-                {language === 'vi' && <MenuItem value='male'>nam</MenuItem>}
-                {language === 'vi' && <MenuItem value='female'>nữ</MenuItem>}
-              </Select> */}
               {/* @ts-ignore */}
               {errors.gender && <Typography variant="caption" color={'red'}>{errors.gender?.message}</Typography>}
             </FormControl>
             </Grid>
             <Grid xs={5}>
-              <TextField error={Boolean(errors.workingForm)} {...register('workingForm')} label="Working form" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('work_form') }} error={Boolean(errors.work_form)} {...register('work_form')} label="Working form" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
-              {errors.workingForm && <Typography variant="caption" color={'red'}>{errors.workingForm?.message}</Typography>}
+              {errors.work_form && <Typography variant="caption" color={'red'}>{errors.work_form?.message}</Typography>}
             </Grid>
             <Grid xs={5}>
-              <TextField error={Boolean(errors.education)} {...register('education')} label="Education" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('education') }} error={Boolean(errors.education)} {...register('education')} label="Education" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
               {errors.education && <Typography variant="caption" color={'red'}>{errors.education?.message}</Typography>}
             </Grid>
             <Grid xs={5}>
-              <TextField error={Boolean(errors.workingPlace)} {...register('workingPlace')} label="Working place" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('work_place') }} error={Boolean(errors.work_place)} {...register('work_place')} label="Working place" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
-              {errors.workingPlace && <Typography variant="caption" color={'red'}>{errors.workingPlace?.message}</Typography>}
+              {errors.work_place && <Typography variant="caption" color={'red'}>{errors.work_place?.message}</Typography>}
             </Grid>
             <Grid xs={5}>
-              <TextField error={Boolean(errors.experience)} {...register('experience')} label="Experience" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('experience') }} error={Boolean(errors.experience)} {...register('experience')} label="Experience" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
               {errors.experience && <Typography variant="caption" color={'red'}>{errors.experience?.message}</Typography>}
             </Grid>
             <Grid xs={5}>
-              <TextField error={Boolean(errors.salary)} {...register('salary')} label="Salary" variant="outlined" size="small" className="w-full"/>
+              <TextField InputLabelProps={{ shrink: !!watch('salary') }} error={Boolean(errors.salary)} {...register('salary')} label="Salary" variant="outlined" size="small" className="w-full"/>
               {/* @ts-ignore */}
               {errors.salary && <Typography variant="caption" color={'red'}>{errors.salary?.message}</Typography>}
             </Grid>
           </Grid>
 
           <Typography variant="h6">Job description</Typography>
-          <TextField error={Boolean(errors.jobDescription)} {...register('jobDescription')} label="Job description" variant="outlined" size="small" className="w-full" multiline />
+          <TextField InputLabelProps={{ shrink: !!watch('job_description') }} error={Boolean(errors.job_description)} {...register('job_description')} label="Job description" variant="outlined" size="small" className="w-full" multiline />
           {/* @ts-ignore */}
-          {errors.jobDescription && <Typography variant="caption" color={'red'}>{errors.jobDescription?.message}</Typography>}
+          {errors.job_description && <Typography variant="caption" color={'red'}>{errors.job_description?.message}</Typography>}
 
           <Typography variant="h6">Requirement</Typography>
-          <TextField error={Boolean(errors.requirement)} {...register('requirement')} label="Requirement" variant="outlined" size="small" className="w-full" multiline />
+          <TextField InputLabelProps={{ shrink: !!watch('requirement') }} error={Boolean(errors.requirement)} {...register('requirement')} label="Requirement" variant="outlined" size="small" className="w-full" multiline />
           {/* @ts-ignore */}
           {errors.requirement && <Typography variant="caption" color={'red'}>{errors.requirement?.message}</Typography>}
 
           <Typography variant="h6">Benefits</Typography>
-          <TextField error={Boolean(errors.benefit)} {...register('benefit')} label="Benefits" variant="outlined" size="small" className="w-full" multiline />
+          <TextField InputLabelProps={{ shrink: !!watch('benefit') }} error={Boolean(errors.benefit)} {...register('benefit')} label="Benefits" variant="outlined" size="small" className="w-full" multiline />
           {/* @ts-ignore */}
           {errors.benefit && <Typography variant="caption" color={'red'}>{errors.benefit?.message}</Typography>}
           
           <Typography variant="h6">Documents</Typography>
-          <TextField error={Boolean(errors.document)} {...register('document')} label="Documents" variant="outlined" size="small" className="w-full" multiline />
+          <TextField InputLabelProps={{ shrink: !!watch('document') }} error={Boolean(errors.document)} {...register('document')} label="Documents" variant="outlined" size="small" className="w-full" multiline />
           {/* @ts-ignore */}
           {errors.document && <Typography variant="caption" color={'red'}>{errors.document?.message}</Typography>}
 
           <Typography variant="h6">Contact Information</Typography>
-          <TextField error={Boolean(errors.contactInformation)} {...register('contactInformation')} label="Contact Information" variant="outlined" size="small" className="w-full" multiline />
+          <TextField InputLabelProps={{ shrink: !!watch('contact') }} error={Boolean(errors.contact)} {...register('contact')} label="Contact Information" variant="outlined" size="small" className="w-full" multiline />
           {/* @ts-ignore */}
-          {errors.contactInformation && <Typography variant="caption" color={'red'}>{errors.contactInformation?.message}</Typography>}
+          {errors.contact && <Typography variant="caption" color={'red'}>{errors.contact?.message}</Typography>}
 
         </LocalizationProvider>
       </Box>

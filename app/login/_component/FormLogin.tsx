@@ -8,6 +8,7 @@ import { login } from './LoginAction';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next-nprogress-bar';
+import { AlertService } from '@lib/AlertService';
 
 const schema = z.object({
   username: z.string().min(4),
@@ -20,11 +21,7 @@ const FormLogin = () => {
   const subLogin = async (data: any) => {
     const result = await login(data);
     if(result && result.error) {
-      toast.error(result.error, {
-        closeOnClick: true,
-        draggable: true,
-        theme: "colored",
-      });
+      AlertService.error(result.error);
     }
     router.push("/user");
   }

@@ -5,7 +5,7 @@ import Recruitment from "@model/Recruitment";
 export const getRecruitById = async (data: any) => {
     await dbConnect();
     let re = await Recruitment.findOne({ id_recruitment: data.id, language: data.language });
-    return re.toJSON();
+    return JSON.parse(JSON.stringify(re));
 }
 
 export const saveRecruit = async (data: any) => {
@@ -15,15 +15,15 @@ export const saveRecruit = async (data: any) => {
     re.gender = data['gender'];
     re.education = data['education'];
     re.experience = data['experience'];
-    re.work_time = data['workingTime'];
-    re.work_form = data['workingForm'];
-    re.work_place = data['workingPlace'];
+    re.work_time = data['work_time'];
+    re.work_form = data['work_form'];
+    re.work_place = data['work_place'];
     re.salary = data['salary'];
-    re.job_description = data['jobDescription'];
+    re.job_description = data['job_description'];
     re.requirement = data['requirement'];
-    re.benefit = data['benefits'];
-    re.document = data['documents'];
-    re.contact = data['contactInformation'];
+    re.benefit = data['benefit'];
+    re.document = data['document'];
+    re.contact = data['contact'];
     re.deadline = data['deadline'] ?? new Date();
     re.quantity = data['quantity'];
     re.language = data['language'];
@@ -52,15 +52,15 @@ export const updateRecruit = async (data: any) => {
   re.gender = data['gender'];
   re.education = data['education'];
   re.experience = data['experience'];
-  re.work_time = data['workingTime'];
-  re.work_form = data['workingForm'];
-  re.work_place = data['workingPlace'];
+  re.work_time = data['work_time'];
+  re.work_form = data['work_form'];
+  re.work_place = data['work_place'];
   re.salary = data['salary'];
-  re.job_description = data['jobDescription'];
+  re.job_description = data['job_description'];
   re.requirement = data['requirement'];
-  re.benefit = data['benefits'];
-  re.document = data['documents'];
-  re.contact = data['contactInformation'];
+  re.benefit = data['benefit'];
+  re.document = data['document'];
+  re.contact = data['contact'];
   re.deadline = data['deadline'];
   re.quantity = data['quantity'];
   re.language = data['language'];

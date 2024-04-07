@@ -48,7 +48,7 @@ export default async function DashboardLayout({
         </Box>
       </Box>
       </NProgress>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
     </StyledEngineProvider>
   );
 }
