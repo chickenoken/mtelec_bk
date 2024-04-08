@@ -3,25 +3,33 @@ version: "3"
 services:
   app:
     container_name: app
+    image: mtelec
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
     env_file:
       - ./.env.production
-    ports:
-      - 3000:3000
+    depends_on:
+      - mongo
+    networks:
+      - app-network
 
   mongo:
     container_name: mongo
     image: mongo
+    env_file:
+      - ./.env.production
     environment:
-      - MONGO_INITDB_DATABASE=mtelec
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
     volumes:
       - mongodb_data:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
-    ports:
-      - '27017:27017'
+    command: [--auth]
+    networks:
+      - app-network
     restart: always
 
   nginx:
@@ -32,8 +40,14 @@ services:
     container_name: nginx
     ports:
       - '80:80'
+    networks:
+      - app-network
+    depends_on:
+      - app
     restart: always
-# docker build -t my_nginx_image -f Dockerfile.nginx .
 
 volumes:
   mongodb_data:
+
+networks:
+  app-network:

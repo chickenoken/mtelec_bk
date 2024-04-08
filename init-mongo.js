@@ -1,3 +1,16 @@
+db.createUser(
+  {
+      user: "admin",
+      pwd: "mtelecMtelec123",
+      roles:[
+          {
+              role: "readWrite",
+              db: "mtelec"
+          }
+      ]
+  }
+);
+
 use('mtelec');
 
 const dbUser = db.getCollection('users');
