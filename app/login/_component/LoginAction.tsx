@@ -20,6 +20,11 @@ export const login = async (data: any) => {
 
   const session = await lucia.createSession(existingUser._id, {});
   const sessionCookie = lucia.createSessionCookie(session.id);
+  //for http
+  sessionCookie.attributes = {
+    ...sessionCookie.attributes,
+    secure: false
+  };
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
   await lucia.deleteExpiredSessions();
   return {status: 200};

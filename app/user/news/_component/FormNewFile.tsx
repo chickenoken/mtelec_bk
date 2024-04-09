@@ -84,7 +84,6 @@ const FormNewFile = (params: any) => {
   }
 
   const handleEdit = (param : any) => {
-    console.log(param);
     setValue('_id', param._id);
     setValue('file', param.file);
     setImageSrc(param.file);

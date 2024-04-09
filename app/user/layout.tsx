@@ -6,11 +6,11 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import LayoutUser from "@/components/layoutUser/LayoutUser";
 import { validateRequest } from "@auth/auth";
-import { redirect } from "next/navigation";
 import NProgress from "@/components/nprogress/NProgress";
 import 'react-toastify/dist/ReactToastify.css';
 import "@/app/globals.css";
 import { ToastContainer } from "react-toastify";
+import { useRouter } from "next-nprogress-bar";
 
 export const metadata: Metadata = {
   title: 'mtelec',
@@ -22,10 +22,11 @@ export default async function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const { user } = await validateRequest();
-	// if (!user) {
-	// 	return redirect("/login");
-	// }
+	if (!user) {
+		return router.push("/login");
+	}
   return (
     <StyledEngineProvider injectFirst>
       <CssBaseline />
