@@ -12,7 +12,7 @@ import Slider from "react-slick";
 const settings = {
   speed: 500,
   slidesToShow: 7,
-  slidesToScroll: 1,
+  slidesToScroll: 3,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
 };
@@ -106,7 +106,7 @@ const Category = () => {
         <Slider {...settings}>
           {cate.map((item) => (
             <Card className=" h-50" key={item._id} sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <CardActionArea sx={{ flexGrow: 1 }} onClick={() => {handleChangeCate(item._id)}}>
+              <CardActionArea sx={{ flexGrow: 1, height: '250px' }} onClick={() => {handleChangeCate(item._id)}}>
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <Typography variant="h6" className="text-center font-bold my-2">{item.cate_name}</Typography>
                   {item.image && <Image className="my-2" src={item.image} alt={item.cate_name} width={100} height={100} />}

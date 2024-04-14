@@ -10,7 +10,7 @@ import NProgress from "@/components/nprogress/NProgress";
 import 'react-toastify/dist/ReactToastify.css';
 import "@/app/globals.css";
 import { ToastContainer } from "react-toastify";
-import { useRouter } from "next-nprogress-bar";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: 'mtelec',
@@ -22,10 +22,9 @@ export default async function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
   const { user } = await validateRequest();
 	if (!user) {
-		return router.push("/login");
+		return redirect("/login");
 	}
   return (
     <StyledEngineProvider injectFirst>

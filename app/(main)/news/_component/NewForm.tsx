@@ -54,7 +54,7 @@ const NewForm = () => {
                   />
               </Grid>
               <Grid xs={8} className="ps-14 pe-14">
-                <Box>
+                <Box className="py-5">
                   <Typography variant="body2" className="bg-mte text-white" 
                     sx={{ 
                       display: 'inline-block',
@@ -69,7 +69,7 @@ const NewForm = () => {
                     }}>
                     {mainNew?.type}
                   </Typography>
-                  <Typography variant="h4" className="txt-mte font-bold mb-2">{mainNew?.title}</Typography>
+                  <Typography variant="h5" className="txt-mte font-bold mb-2">{mainNew?.title}</Typography>
                   <Box display="flex">
                     <FaRegCalendar />
                     <Typography variant="body2" className="ms-2">{mainNew?.updatedAt && format(new Date(mainNew.updatedAt), 'yyyy/MM/dd')}</Typography>
@@ -97,6 +97,10 @@ const NewForm = () => {
                     height="140"
                     image={n.file}
                     alt="green iguana"
+                    sx={{
+                      objectFit: 'cover',
+                      height: 350,
+                    }}
                   />
                   <CardContent>
                   <Typography variant="body2" className="bg-mte text-white" 
@@ -113,7 +117,7 @@ const NewForm = () => {
                       }}>
                       {n.type}
                     </Typography>
-                    <Typography variant="h4" className="txt-mte font-bold mb-2">{n.title}</Typography>
+                    <Typography variant="h5" className="txt-mte font-bold mb-2">{n.title}</Typography>
                     <Box display="flex">
                       <FaRegCalendar />
                       <Typography variant="body2" className="ms-2">{n.updatedAt && format(new Date(n.updatedAt), 'yyyy/MM/dd')}</Typography>
