@@ -9,7 +9,7 @@ export const getNewMain = async () => {
 
   for (const item of ne) {
       const nf = await NewFile.find({ id_news: item._id }).sort({createdAt: 1 }).limit(1);
-      if (nf) {
+      if (nf.length > 0) {
           ne[0] = ne[0].toObject();
           ne[0]['file'] = nf[0].file;
       }

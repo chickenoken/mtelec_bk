@@ -87,3 +87,22 @@ ol, ul {
   z-index: -1;
   animation: nyan-cat-animation 5s linear infinite;
 }
+
+.truncate-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3; 
+  max-height: calc(1.5em * 3);
+  position: relative;
+}
+
+.truncate-3::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 1.5em;
+  background: linear-gradient(to right, transparent, white 50%);
+}

@@ -111,9 +111,9 @@ const page = ({ params }: { params: { id: string } }) => {
             <Typography variant="h6" className="font-bold mb-2 txt-mte">All News</Typography>
             <AnimUp>
               {other && other.slice(0, itemsToShow).map((n: any) => (
-                <Card elevation={10} key={n._id} className="mb-4">
+                <Card elevation={10} key={n._id} className="mb-4 h-10">
                   <Link href={`/news/detail/${n._id}`}>
-                    <CardActionArea>
+                    <CardActionArea className="h-1">
                       <CardMedia
                         component="img"
                         height="140"

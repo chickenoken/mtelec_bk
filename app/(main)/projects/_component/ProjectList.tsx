@@ -38,15 +38,8 @@ const ProjectList = () => {
     setCompleteDate(item.complete_date);
     const workFieldArray = item.working_field.split('\n').filter((field: string) => field.trim() !== '');
     setWorkField(workFieldArray);
-    fetch(item.image).then(res => res.blob()).then(blob => {
-      const file = new File([blob], "fileImg",{ type: "image/jpg" });
-      setImageSrc(URL.createObjectURL(file));
-    })
-
-    fetch(item.logo).then(res => res.blob()).then(blob => {
-      const file = new File([blob], "fileImg",{ type: "image/jpg" });
-      setLogo(URL.createObjectURL(file));
-    })
+    setImageSrc(item.image);
+    setLogo(item.logo);
   }
 
   return (
@@ -120,7 +113,8 @@ const ProjectList = () => {
                   <ListItemIcon sx={{ minWidth: '30px', ml: item.endsWith(':') ? 0 : 2  }}>
                     {item.endsWith(':') ? <FaSquare color="#33AF4A" /> : <BsDot />}
                   </ListItemIcon>
-                  <ListItemText primary={item} primaryTypographyProps={{ fontWeight: item.endsWith(':') ? 'bold' : 'normal' }} />
+                  <ListItemText primary={item.endsWith(':') ? item.slice(0, -1) : item} 
+                      primaryTypographyProps={{ fontWeight: item.endsWith(':') ? 'bold' : 'normal' }} />
                 </ListItem>
                 ))}
               </Grid>

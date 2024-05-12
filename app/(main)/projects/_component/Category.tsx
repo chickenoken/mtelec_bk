@@ -141,7 +141,8 @@ const Category = () => {
                   <ListItemIcon sx={{ minWidth: '30px', ml: item.endsWith(':') ? 0 : 2  }}>
                     {item.endsWith(':') ? '' : <BsDot />}
                   </ListItemIcon>
-                  <ListItemText primary={item} primaryTypographyProps={{ fontWeight: item.endsWith(':') ? 'bold' : 'normal' }} />
+                  <ListItemText primary={item.endsWith(':') ? item.slice(0, -1) : item} 
+                      primaryTypographyProps={{ fontWeight: item.endsWith(':') ? 'bold' : 'normal' }} />
                 </ListItem>
               ))}
             </Grid>

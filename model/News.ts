@@ -11,12 +11,17 @@ const NewsSchema: MongooseSchema = new mongoose.Schema({
   content: {
     type: String
   },
+  dateUp: {
+    type: Date
+  },
 },{timestamps: true});
 
 interface INews extends Document {
   title: string;
   content: String;
   type: string;
+  dateUp: Date;
+
 }
 
 const News = mongoose.models.News || mongoose.model<INews>('News', NewsSchema);

@@ -14,6 +14,7 @@ export const saveNew = async (data: any) => {
   ne.title = data.title;
   ne.content = data.content;
   ne.type = data.type;
+  ne.dateUp = data.dateUp;
   await ne.save();
   return { status: 200 };
 }
@@ -24,6 +25,7 @@ export const updateNew = async (data: any) => {
   ne.title = data.title;
   ne.content = data.content;
   ne.type = data.type;
+  ne.dateUp = data.dateUp;
   await ne.save();
   return { status: 200 };
 }

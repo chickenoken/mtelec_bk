@@ -174,7 +174,7 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Occupation:' : 'Ngành nghề:'}
                     </Typography>}/>
                 </Box>
-                <ListItemText primary={title} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={title} />
               </ListItem>
               <ListItem alignItems="flex-start" sx={{ padding: '0', margin: '0'}}>
                 <Box sx={{ flexBasis: '30%' }}>
@@ -183,7 +183,7 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Gender:' : 'Giới tính:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={gender} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={gender} />
               </ListItem>
               <ListItem alignItems="flex-start" sx={{ padding: '0', margin: '0'}}>
                 <Box sx={{ flexBasis: '30%' }}>
@@ -192,7 +192,7 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Education:' : 'Trình độ:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={education} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={education} />
               </ListItem>
               <ListItem alignItems="flex-start" sx={{ padding: '0', margin: '0'}}>
                 <Box sx={{ flexBasis: '30%' }}>
@@ -201,7 +201,7 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Experience:' : 'Kinh nghiệm:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={experience} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={experience} />
               </ListItem>
             </Grid>
             <Grid md={6}>
@@ -212,7 +212,7 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Working time:' : 'Tính chất công việc:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={workTime} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={workTime} />
               </ListItem>
               <ListItem alignItems="flex-start" sx={{ padding: '0', margin: '0'}}>
                 <Box sx={{ flexBasis: '30%' }}>
@@ -221,16 +221,16 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Working form:' : 'Hình thức làm việc:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={workForm} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={workForm} />
               </ListItem>
               <ListItem alignItems="flex-start" sx={{ padding: '0', margin: '0'}}>
-                <Box sx={{ width: '30%' }}>
+                <Box sx={{ width: '30%', maxWidth: '30%' }}>
                   <ListItemText className="txt-mte"
                     primary={<Typography variant="body1" sx={{ fontWeight: 700 }}>
                       {mode == 0 ? 'Working place:' : 'Địa điểm làm việc:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={workPlace} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={workPlace} />
               </ListItem>
               <ListItem alignItems="flex-start" sx={{ padding: '0', margin: '0'}}>
                 <Box sx={{ flexBasis: '30%' }}>
@@ -239,7 +239,7 @@ const page = ({ params }: { params: { id: string, lang: string } }) => {
                       {mode == 0 ? 'Salary:' : 'Mức lương:'}
                       </Typography>}/>
                 </Box>
-                <ListItemText primary={salary} />
+                <ListItemText sx={{ width: '70%', maxWidth: '70%' }} primary={salary} />
               </ListItem>
             </Grid>
           </Grid>

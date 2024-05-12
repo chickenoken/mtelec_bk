@@ -11,7 +11,7 @@ interface MainNew {
     file: string;
     type: string;
     title: string;
-    updatedAt: string;
+    dateUp: string;
     content: string;
     _id: string;
 }
@@ -72,7 +72,7 @@ const NewForm = () => {
                   <Typography variant="h5" className="txt-mte font-bold mb-2">{mainNew?.title}</Typography>
                   <Box display="flex">
                     <FaRegCalendar />
-                    <Typography variant="body2" className="ms-2">{mainNew?.updatedAt && format(new Date(mainNew.updatedAt), 'yyyy/MM/dd')}</Typography>
+                    <Typography variant="body2" className="ms-2">{mainNew?.dateUp && format(new Date(mainNew.dateUp), 'yyyy/MM/dd')}</Typography>
                   </Box>
                   <Divider className='my-2'/>
                   <Typography variant="body2" className="mb-4">{mainNew?.content}</Typography>
@@ -89,17 +89,17 @@ const NewForm = () => {
       <Grid container spacing={5}>
         {news && news.slice(0, itemsToShow).map((n: any) => (
           <Grid key={n._id} md={4}>
-            <Card elevation={10}>
+            <Card elevation={10} className='h-full'>
               <Link href={`/news/detail/${n._id}`}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
-                    height="140"
+                    height="100"
                     image={n.file}
                     alt="green iguana"
                     sx={{
                       objectFit: 'cover',
-                      height: 350,
+                      height: 300,
                     }}
                   />
                   <CardContent>
@@ -120,10 +120,10 @@ const NewForm = () => {
                     <Typography variant="h5" className="txt-mte font-bold mb-2">{n.title}</Typography>
                     <Box display="flex">
                       <FaRegCalendar />
-                      <Typography variant="body2" className="ms-2">{n.updatedAt && format(new Date(n.updatedAt), 'yyyy/MM/dd')}</Typography>
+                      <Typography variant="body2" className="ms-2">{n.dateUp && format(new Date(n.dateUp), 'yyyy/MM/dd')}</Typography>
                     </Box>
                     <Divider className='my-2'/>
-                    <Typography variant="body2" className="mb-4">{n.content}</Typography>
+                    <Typography variant="body2" className="mb-4 truncate-3">{n.content}</Typography>
                     <Typography variant="body2" className="txt-mte">View Details</Typography>
                   </CardContent>
                 </CardActionArea>
