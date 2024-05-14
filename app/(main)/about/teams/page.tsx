@@ -49,7 +49,7 @@ const page = () => {
       </Box>
       <Container>
         <AnimUp>
-        <Box className="px-36 mb-8">
+        <Box className="px-36 mb-8 mt-14">
           <Typography className='mb-2'>Our team with the strong Leader is a group of skilled and dedicated individuals who share a common goal of delivering high-quality work and exceptional results. Each team member brings a unique set of skills, knowledge, and experience to the table, which allows us to tackle projects from different angles and find innovative solutions. </Typography>
           <Typography className=''>We prioritize collaboration, communication, and mutual respect, which fosters a supportive and productive work environment. We committed to staying up-to-date with the latest industry trends and technologies, and we continuously seek opportunities for growth and improvement.</Typography>
         </Box>

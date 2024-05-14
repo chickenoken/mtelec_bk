@@ -31,7 +31,7 @@ const Footer = () => {
     <>
     <Box sx={{ backgroundImage: `url('/asset/img/footer.png')`, backgroundSize: 'cover',}}>
       <Grid container className="pt-28 pb-10" >
-        <Grid md={4}>
+        <Grid lg={4}>
           <Box className="md:ml-6">
             <LeftToRight>
             <Box className='md:ml-11 mb-2'>
@@ -55,7 +55,7 @@ const Footer = () => {
             </LeftToRight>
           </Box>
         </Grid>
-        <Grid md={5} className="my-2">
+        <Grid lg={5} className="my-2">
           <Grid container className="md:space-x-14 space-x-4">
             <Grid xs={4}>
               <Box className='flex items-center justify-center'>
@@ -97,7 +97,7 @@ const Footer = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container md={3} alignItems="flex-end" justifyContent="flex-start">
+        <Grid container lg={3} alignItems="flex-end" justifyContent="flex-start my-4">
           <a href="/asset/mte-pdf.pdf" download style={{ display: 'flex', alignItems: 'center' }}>
             <Typography className='font-bold text-white'>Download Company Profile (PDF)</Typography>
             <GoDownload color='white' size="1.3rem" />

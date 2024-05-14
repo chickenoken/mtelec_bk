@@ -5,7 +5,7 @@ import Navhead from "./navhead/Navhead";
 import Links from "./links/Links";
 
 const Navbar = () => {
-  const isMobile = useMediaQuery('(max-width:600px)'); // Adjust the breakpoint as per your requirement
+  const isMobile = useMediaQuery('(max-width:800px)');
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {

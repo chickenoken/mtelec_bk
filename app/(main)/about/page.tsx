@@ -30,7 +30,7 @@ const page = () => {
         height: { xs: '300px', sm: '500px' }, 
         backgroundImage: `url(${"/asset/img/about/hero.png"})`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: { xs: '100% 100%', sm: '100% auto' },
+        backgroundSize:"cover",
       }}>
         <AnimUp>
           <Box display="flex" alignItems="center">

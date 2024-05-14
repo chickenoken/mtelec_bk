@@ -4,6 +4,6 @@ import CateProject from "@model/CateProject";
 
 export const getAllCateProjNoId = async () => {
   await dbConnect();
-  let catePro = await CateProject.find();
+  let catePro = await CateProject.find({});
   return JSON.parse(JSON.stringify(catePro));
 }

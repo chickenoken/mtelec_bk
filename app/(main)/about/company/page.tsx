@@ -51,7 +51,7 @@ const page = () => {
       <Container>
       <AnimUp>
         <Box className="text-center">
-          <Typography variant='h4' className='trilong font-bold italic'>General Details</Typography>
+          <Typography variant='h4' className='trilong font-bold italic mt-14'>General Details</Typography>
         </Box>
         <Box className="mt-8 text-left" display="flex" justifyContent="center">
           <Grid container justifyContent="center">
