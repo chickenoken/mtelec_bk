@@ -15,7 +15,7 @@ interface MainNew {
   file: string;
   type: string;
   title: string;
-  updatedAt: string;
+  dateUp: string;
   content: string;
 }
 
@@ -69,30 +69,25 @@ const page = ({ params }: { params: { id: string } }) => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: '100% 100%',
       }}>
-        <AnimUp>
-          <Box display="flex" alignItems="center">
-            <Box display="flex" className="border-b-2 border-black md:ms-16">
-              <MdChevronRight size="2rem" className="me-2" color="black"/>
-              <Typography variant="overline"  className="text-black me-2 text-lg">HOME PAGE</Typography>
-              <MdChevronRight size="2rem" className="me-2" color="black"/>
-              <Typography variant="overline"  className="text-black me-2 text-lg">NEWS</Typography>
-            </Box>
+        <Box display="flex" alignItems="center">
+          <Box display="flex" className="border-b-2 border-black md:ms-16">
+            <MdChevronRight size="2rem" className="me-2" color="black"/>
+            <Typography variant="overline"  className="text-black me-2 text-lg">HOME PAGE</Typography>
+            <MdChevronRight size="2rem" className="me-2" color="black"/>
+            <Typography variant="overline"  className="text-black me-2 text-lg">NEWS</Typography>
           </Box>
-          <Typography variant="h3" className="font-bold txt-mte mt-4 md:ms-16">{news?.title}</Typography>
-        </AnimUp>
+        </Box>
+        <Typography variant="h3" className="font-bold txt-mte mt-4 md:ms-16">{news?.title}</Typography>
       </Box>
       <Container maxWidth={false}>
         <Grid container spacing={5} className="mt-4">
           <Grid md={9}>
-            <AnimUp>
             <Box className="p-8" sx={{ backgroundImage: `url('/asset/img/about/bg_1.png')`, backgroundSize: 'cover'}}>
               <Typography variant="h6" className="font-bold mb-2">{news?.content}</Typography>
             </Box>
-            </AnimUp>
             <Box className="mt-4">
               {newFile?.map((item, index) => (
-                <AnimUp key={item._id} >
-                <Card className="mb-4">
+                <Card className="mb-4" key={index}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -103,13 +98,11 @@ const page = ({ params }: { params: { id: string } }) => {
                       />
                   </CardActionArea>
                 </Card>
-                </AnimUp>
               ))}
             </Box>
           </Grid>
           <Grid md={3}>
             <Typography variant="h6" className="font-bold mb-2 txt-mte">All News</Typography>
-            <AnimUp>
               {other && other.slice(0, itemsToShow).map((n: any) => (
                 <Card elevation={10} key={n._id} className="mb-4">
                   <Link href={`/news/detail/${n._id}`}>
@@ -138,17 +131,16 @@ const page = ({ params }: { params: { id: string } }) => {
                         <Typography variant="h4" className="txt-mte font-bold mb-2">{n.title}</Typography>
                         <Box display="flex">
                           <FaRegCalendar />
-                          <Typography variant="body2" className="ms-2">{n.updatedAt && format(new Date(n.updatedAt), 'yyyy/MM/dd')}</Typography>
+                          <Typography variant="body2" className="ms-2">{n.dateUp && format(new Date(n.dateUp), 'yyyy/MM/dd')}</Typography>
                         </Box>
                         <Divider className='my-2'/>
-                        <Typography variant="body2" className="mb-4">{n.content}</Typography>
+                        <Typography variant="body2" className="mb-4 truncate-3">{n.content}</Typography>
                         <Typography variant="body2" className="txt-mte">View Details</Typography>
                       </CardContent>
                     </CardActionArea>
                   </Link>
                 </Card>
               ))}
-              </AnimUp>
             {other && itemsToShow < other.length && 
               <Box className="my-10">
                 <Button onClick={handleViewMore} className="h-16 px-8 py-5 mte-grey text-black text-xl font-bold mt-2" fullWidth variant="text">View More</Button>
@@ -156,8 +148,6 @@ const page = ({ params }: { params: { id: string } }) => {
             }
           </Grid>
         </Grid>
-
-        
       </Container>
     </>
   )

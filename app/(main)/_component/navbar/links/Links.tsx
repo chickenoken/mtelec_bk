@@ -31,7 +31,7 @@ const Links = () => {
       subLinks: [
         { title: "Company Information", path: "/about/company" },
         { title: "About Our Team", path: "/about/teams" },
-        { title: "PBE Protection", path: "/about/protection" },
+        { title: "PPE Protection", path: "/about/protection" },
         { title: "Recruitment", path: "/about/recruitment" },
       ],
     },

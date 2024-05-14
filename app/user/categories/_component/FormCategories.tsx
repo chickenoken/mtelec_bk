@@ -21,7 +21,6 @@ const FormCategories = ({id}: FormCategoriesProps) => {
   const router = useRouter();
   const schema = z.object({
     cate_name: z.string().min(4, 'User Name must be at least 3 characters'),
-    project_detail: z.string().min(4, 'User Name must be at least 3 characters'),
   })
 
   const { register, trigger, formState: { errors }, watch, setValue, getValues } = useForm({ resolver: zodResolver(schema) })
@@ -108,11 +107,6 @@ const FormCategories = ({id}: FormCategoriesProps) => {
           { imageSrc && 
             <Card><CardMedia component="img" height="20" image={imageSrc} alt="Preview"/></Card>
           }
-        </Box>
-        <Box className="w-1/2 mb-4">
-          <TextField error={Boolean(errors.project_detail)} InputLabelProps={{ shrink: !!watch('project_detail') }} required fullWidth variant="outlined" size="small" label="Project" {...register('project_detail')}/>
-          {/* @ts-ignore */}
-          {errors.project_detail && <Typography variant="caption" color={'red'}>{errors.project_detail.message}</Typography>}
         </Box>
       </FormControl>
       {id && <>

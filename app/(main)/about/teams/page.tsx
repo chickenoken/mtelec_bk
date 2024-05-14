@@ -62,7 +62,7 @@ const page = () => {
         <Box className="mt-8 text-center mb-4" justifyContent="center">
           <Grid container justifyContent="center" alignItems="center">
             <Grid md={6} className="flex flex-col items-center justify-end pe-10">
-              <Image src="/asset/img/about/teams/person_1.png" alt="leg" width={400} height={400} />
+              <Image src="/asset/img/about/teams/person_1.png" alt="leg" width={380} height={380} />
               <Card className='w-96 max-w-96'>
                 <CardContent className='px-2'>
                   <Typography className='text-start txt-mte font-bold text-lg'>
@@ -74,7 +74,7 @@ const page = () => {
                   <Typography className='text-start font-bold text-sm' variant='subtitle2'>
                     Management – Contracting – Control Executive
                   </Typography>
-                  <Typography className='text-start text-xs ps-10' >
+                  <Typography className='text-start text-xs' >
                     Prestige, Integrity, and Respect are the three key factors that have contributed to our success of a company
                   </Typography>
                 </CardContent>
@@ -93,7 +93,7 @@ const page = () => {
                   <Typography className='text-start font-bold text-sm' variant='subtitle2'>
                     Technical Management – Control
                   </Typography>
-                  <Typography className='text-start text-xs ps-10' >
+                  <Typography className='text-start text-xs' >
                     Adaptability – Safety – Effectiveness are the criteria that we aim for the quality of our service.
                   </Typography>
                 </CardContent>

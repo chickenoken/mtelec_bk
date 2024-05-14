@@ -20,7 +20,7 @@ const schema = z.object({
   quantity: z.string().min(4),
   title: z.string().min(4),
   work_time: z.string().min(4),
-  gender: z.string().min(4),
+  gender: z.string().min(2),
   work_form: z.string().min(4),
   education: z.string().min(4),
   work_place: z.string().min(4),
@@ -180,10 +180,10 @@ const FormRecruitment = ({ params }: { params: { id: string|null, language: stri
                     label="gender"
                   >
                     <MenuItem></MenuItem>
-                    {language === 'en' && <MenuItem value='male'>male</MenuItem>}
-                    {language === 'en' && <MenuItem value='female'>female</MenuItem>}
-                    {language === 'vi' && <MenuItem value='male'>nam</MenuItem>}
-                    {language === 'vi' && <MenuItem value='female'>nữ</MenuItem>}
+                    {language === 'en' && <MenuItem value='male'>Male</MenuItem>}
+                    {language === 'en' && <MenuItem value='female'>Female</MenuItem>}
+                    {language === 'vi' && <MenuItem value='Nam'>Nam</MenuItem>}
+                    {language === 'vi' && <MenuItem value='Nữ'>Nữ</MenuItem>}
                   </Select>
                 )}
               />

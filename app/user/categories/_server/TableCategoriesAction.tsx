@@ -6,7 +6,12 @@ import Categories from "@model/Categories";
 export const getAllCate = async () => {
   await dbConnect();
   const cate = await Categories.find();
-  return JSON.parse(JSON.stringify(cate));
+  const updatedCate = await Promise.all(cate.map(async (item) => {
+    let catePrj = await CateProject.find({ cate_id: item._id });
+    item.project_detail_num = catePrj.length;
+    return item;
+  }));
+  return JSON.parse(JSON.stringify(updatedCate));
 }
 
 export const delCate = async (id: any) => {

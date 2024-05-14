@@ -5,6 +5,10 @@ const CateProjectSchema: MongooseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  cate_title: {
+    type: String,
+    required: true
+  },
   cate_pro_name: {
     type: String,
     required: true
@@ -19,6 +23,7 @@ const CateProjectSchema: MongooseSchema = new mongoose.Schema({
 
 interface ICateProject extends Document {
   cate_id: string;
+  cate_title: string;
   cate_pro_name: String;
   location: String;
   detail: String;

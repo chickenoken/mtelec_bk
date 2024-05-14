@@ -53,6 +53,7 @@ const FormCateProject = (params: any) => {
 
   const schema = z.object({
     cate_id:  z.string(),
+    cate_title: z.string().min(4, 'User Name must be at least 3 characters'),
     cate_pro_name:  z.string().min(4, 'User Name must be at least 3 characters'),
     location:  z.string().min(4, 'User Name must be at least 3 characters'),
     detail:  z.string().min(4, 'User Name must be at least 3 characters'),
@@ -77,6 +78,7 @@ const FormCateProject = (params: any) => {
   }
 
   const handleAdd = () => {
+    setValue('cate_title', '');
     setValue('cate_pro_name', '');
     setValue('location', '');
     setValue('detail', '');
@@ -85,6 +87,7 @@ const FormCateProject = (params: any) => {
 
   const handleEdit = (param : any) => {
     setValue('_id', param._id);
+    setValue('cate_title', param.cate_title);
     setValue('cate_pro_name', param.cate_pro_name);
     setValue('location', param.location);
     setValue('detail', param.detail);
@@ -118,6 +121,12 @@ const FormCateProject = (params: any) => {
 
       {(mode == 'save' || mode == 'update') && (
         <>
+        <Box className="w-1/2 mb-4">
+            <TextField error={Boolean(errors.cate_title)} InputLabelProps={{ shrink: !!watch('cate_title') }} required fullWidth variant="outlined" size="small" label="Cate Title" autoFocus {...register('cate_title')}/>
+            {/* @ts-ignore */}
+            {errors.cate_title && <Typography variant="caption" color={'red'}>{errors.cate_title.message}</Typography>}
+          </Box>
+
           <Box className="w-1/2 mb-4">
             <TextField error={Boolean(errors.cate_pro_name)} InputLabelProps={{ shrink: !!watch('cate_pro_name') }} required fullWidth variant="outlined" size="small" label="Project Name" autoFocus {...register('cate_pro_name')}/>
             {/* @ts-ignore */}
