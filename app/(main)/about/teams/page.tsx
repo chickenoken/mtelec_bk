@@ -140,10 +140,10 @@ const page = () => {
 
           <AnimUp>
           <Grid container justifyContent="center" alignItems="center" className="mb-10">
-            <Grid md={6} className="flex flex-col items-center">
+            <Grid md={4} className="flex flex-col items-center">
               <Image src="/asset/img/about/teams/p_3.png" alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-                Project Manager
+                M&E Manager
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
                 Nguyen Van Mong
@@ -152,10 +152,22 @@ const page = () => {
                 15+ years of experience
               </Typography>
             </Grid>
-            <Grid md={6} className="flex flex-col items-center">
+            <Grid md={4} className="flex flex-col items-center">
+              <Image src="/asset/img/about/teams/p_9.png" alt="leg" width={250} height={250} />
+              <Typography className='text-center'>
+                M&E Manager
+              </Typography>
+              <Typography className='text-center font-bold' variant='subtitle1'>
+                Adri Satria
+              </Typography>
+              <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
+                15+ years of experience
+              </Typography>
+            </Grid>  
+            <Grid md={4} className="flex flex-col items-center">
               <Image src="/asset/img/about/teams/p_4.png" alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-              Project Manager
+                M&E Manager
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
               Nguyen Ngoc Thanh

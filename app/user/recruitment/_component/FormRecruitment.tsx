@@ -180,8 +180,8 @@ const FormRecruitment = ({ params }: { params: { id: string|null, language: stri
                     label="gender"
                   >
                     <MenuItem></MenuItem>
-                    {language === 'en' && <MenuItem value='male'>Male</MenuItem>}
-                    {language === 'en' && <MenuItem value='female'>Female</MenuItem>}
+                    {language === 'en' && <MenuItem value='Male'>Male</MenuItem>}
+                    {language === 'en' && <MenuItem value='Female'>Female</MenuItem>}
                     {language === 'vi' && <MenuItem value='Nam'>Nam</MenuItem>}
                     {language === 'vi' && <MenuItem value='Nữ'>Nữ</MenuItem>}
                   </Select>
