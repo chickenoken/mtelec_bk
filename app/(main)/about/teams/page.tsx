@@ -1,11 +1,75 @@
+"use client"
+import { getEmpl } from '@app/user/employee/_server/FormEmployAction'
 import { MotionDiv } from '@components/motion/MotionDiv'
 import { Box, Card, CardContent, Container, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Image from 'next/image'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { MdChevronRight } from 'react-icons/md'
 
+interface IEmployee {
+  ceo_name1: string;
+  ceo_image1: string;
+  ceo_title1: string;
+  ceo_tdesc1: string;
+  ceo_desc1: string;
+  ceo_name2: string;
+  ceo_image2: string;
+  ceo_title2: string;
+  ceo_tdesc2: string;
+  ceo_desc2: string;
+
+  cm_name1: string;
+  cm_image1: string;
+  cm_title1: string;
+  cm_desc1: string;
+  cm_name2: string;
+  cm_image2: string;
+  cm_title2: string;
+  cm_desc2: string;
+
+  m_name1: string;
+  m_image1: string;
+  m_title1: string;
+  m_desc1: string;
+  m_name2: string;
+  m_image2: string;
+  m_title2: string;
+  m_desc2: string;
+  m_name3: string;
+  m_image3: string;
+  m_title3: string;
+  m_desc3: string;
+
+  sm_name1: string;
+  sm_image1: string;
+  sm_title1: string;
+  sm_desc1: string;
+  sm_name2: string;
+  sm_image2: string;
+  sm_title2: string;
+  sm_desc2: string;
+  sm_name3: string;
+  sm_image3: string;
+  sm_title3: string;
+  sm_desc3: string;
+  sm_name4: string;
+  sm_image4: string;
+  sm_title4: string;
+  sm_desc4: string;
+}
 const page = () => {
+  const [data, setData] = React.useState<IEmployee>();
+
+  const getData = async () => {
+    let rs = await getEmpl();
+    setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const AnimUp = ({ children }: { children: ReactNode }) => {
     return (
       <MotionDiv
@@ -48,12 +112,14 @@ const page = () => {
         </AnimUp>
       </Box>
       <Container>
+
         <AnimUp>
         <Box className="px-36 mb-8 mt-14">
           <Typography className='mb-2'>Our team with the strong Leader is a group of skilled and dedicated individuals who share a common goal of delivering high-quality work and exceptional results. Each team member brings a unique set of skills, knowledge, and experience to the table, which allows us to tackle projects from different angles and find innovative solutions. </Typography>
           <Typography className=''>We prioritize collaboration, communication, and mutual respect, which fosters a supportive and productive work environment. We committed to staying up-to-date with the latest industry trends and technologies, and we continuously seek opportunities for growth and improvement.</Typography>
         </Box>
         </AnimUp>
+        {data && ( <>
         <AnimUp>
         <Box className="text-center my-10">
           <Typography variant='h4' className='trilong font-bold italic'>Best Team Of</Typography>
@@ -62,39 +128,39 @@ const page = () => {
         <Box className="mt-8 text-center mb-4" justifyContent="center">
           <Grid container justifyContent="center" alignItems="center">
             <Grid md={6} className="flex flex-col items-center justify-end pe-10">
-              <Image src="/asset/img/about/teams/person_1.png" alt="leg" width={380} height={380} />
+              <Image src={data.ceo_image1} alt="leg" width={380} height={380} />
               <Card className='w-96 max-w-96'>
                 <CardContent className='px-2'>
                   <Typography className='text-start txt-mte font-bold text-lg'>
-                    Mrs. NGUYEN THI BICH THUY
+                    {data.ceo_name1}
                   </Typography>
                   <Typography className='text-start font-bold italic trilong' variant='subtitle1'>
-                    General Director
+                    {data.ceo_title1}
                   </Typography>
                   <Typography className='text-start font-bold text-sm' variant='subtitle2'>
-                    Management – Contracting – Control Executive
+                    {data.ceo_tdesc1}
                   </Typography>
                   <Typography className='text-start text-xs' >
-                    Prestige, Integrity, and Respect are the three key factors that have contributed to our success of a company
+                    {data.ceo_desc1}
                   </Typography>
                 </CardContent>
               </Card>
             </Grid>
             <Grid md={6} className="flex flex-col items-center justify-start ps-10">
-              <Image src="/asset/img/about/teams/person_2.png" alt="leg" width={380} height={380} />
+              <Image src={data.ceo_image2} alt="leg" width={380} height={380} />
               <Card className='w-96 max-w-96'>
                 <CardContent>
                   <Typography className='text-start txt-mte font-bold text-lg'>
-                    Mr. GUY GAUTHIER
+                    {data.ceo_name2}
                   </Typography>
                   <Typography className='text-start font-bold italic trilong' variant='subtitle1'>
-                    Technical Director
+                    {data.ceo_title2}
                   </Typography>
                   <Typography className='text-start font-bold text-sm' variant='subtitle2'>
-                    Technical Management – Control
+                    {data.ceo_tdesc2}
                   </Typography>
                   <Typography className='text-start text-xs' >
-                    Adaptability – Safety – Effectiveness are the criteria that we aim for the quality of our service.
+                    {data.ceo_desc2}
                   </Typography>
                 </CardContent>
               </Card>
@@ -107,32 +173,32 @@ const page = () => {
           <Typography variant='h4' className='trilong font-bold italic'>Core Managers</Typography>
         </Box>
         </AnimUp>
-
+        
         <Box className="mx-auto mb-4">
           <AnimUp>
           <Grid container justifyContent="center" alignItems="center" className="mb-10">
             <Grid md={6} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_1.png" alt="leg" width={250} height={250} />
+              <Image src={data.cm_image1} alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-                Executive Assistance
+                {data.cm_title1}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-                Tran Thi Thu Trang
+                {data.cm_name1}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-                7+ years of experience
+                {data.cm_desc1}
               </Typography>
             </Grid>
             <Grid md={6} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_2.png" alt="leg" width={250} height={250} />
+              <Image src={data.cm_image2} alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-              Chief of Accounting
+                {data.cm_title2}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-              On Le My Phuong
+                {data.cm_name2}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-              10+ years of experience
+                {data.cm_desc2}
               </Typography>
             </Grid>
           </Grid>
@@ -141,39 +207,39 @@ const page = () => {
           <AnimUp>
           <Grid container justifyContent="center" alignItems="center" className="mb-10">
             <Grid md={4} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_3.png" alt="leg" width={250} height={250} />
+              <Image src={data.m_image1} alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-                M&E Manager
+                {data.m_title1}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-                Nguyen Van Mong
+                {data.m_name1}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-                15+ years of experience
+                {data.m_desc1}
               </Typography>
             </Grid>
             <Grid md={4} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_9.png" alt="leg" width={250} height={250} />
+              <Image src={data.m_image2} alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-                M&E Manager
+                {data.m_title2}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-                Adri Satria
+                {data.m_name2}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-                15+ years of experience
+                {data.m_desc2}
               </Typography>
             </Grid>  
             <Grid md={4} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_4.png" alt="leg" width={250} height={250} />
+              <Image src={data.m_image3} alt="leg" width={250} height={250} />
               <Typography className='text-center'>
-                M&E Manager
+                {data.m_title3}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-              Nguyen Ngoc Thanh
+                {data.m_name3}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-              13+ years of experience
+                {data.m_desc3}
               </Typography>
             </Grid>
           </Grid>
@@ -182,56 +248,58 @@ const page = () => {
           <AnimUp>
           <Grid container justifyContent="center" alignItems="center" className="mb-10">
             <Grid md={3} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_5.png" alt="leg" width={200} height={200} />
+              <Image src={data.sm_image1} alt="leg" width={200} height={200} />
               <Typography className='text-center'>
-              Site Manager
+                {data.sm_title1}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-              Ngo Nhat Anh
+                {data.sm_name1}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-              7+ years of experience
+                {data.sm_desc1}
               </Typography>
             </Grid>
             <Grid md={3} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_6.png" alt="leg" width={200} height={200} />
+              <Image src={data.sm_image2} alt="leg" width={200} height={200} />
               <Typography className='text-center'>
-              Site Manager
+                {data.sm_title2}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-              Le Van Thuan
+                {data.sm_name2}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-              12+ years of experience
+                {data.sm_desc2}
               </Typography>
             </Grid>
             <Grid md={3} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_7.png" alt="leg" width={200} height={200} />
+              <Image src={data.sm_image3} alt="leg" width={200} height={200} />
               <Typography className='text-center'>
-              Site Manager
+                {data.sm_title3}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-              Nguyen Van Tra
+                {data.sm_name3}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-              4+ years of experience
+                {data.sm_desc3}
               </Typography>
             </Grid>
             <Grid md={3} className="flex flex-col items-center">
-              <Image src="/asset/img/about/teams/p_8.png" alt="leg" width={200} height={200} />
+              <Image src={data.sm_image4} alt="leg" width={200} height={200} />
               <Typography className='text-center'>
-              Site Manager
+                {data.sm_title4}
               </Typography>
               <Typography className='text-center font-bold' variant='subtitle1'>
-              Ha Gia Bao
+                {data.sm_name4}
               </Typography>
               <Typography className='text-center font-bold italic trilong text-sm' variant='subtitle2'>
-              3+ years of experience
+                {data.sm_desc4}
               </Typography>
             </Grid>
           </Grid>
           </AnimUp>
         </Box>
+        </>
+      )}
       </Container>
     </Box>
   )

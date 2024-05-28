@@ -18,10 +18,11 @@ import React from "react";
 import Link from "next/link";
 import { IoLogOutOutline } from "react-icons/io5";
 import { BiSolidCategory } from "react-icons/bi";
-import { MdExpandLess, MdExpandMore, MdOutlineExpandMore } from "react-icons/md";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import { logout } from "./LayoutAction";
 import { toast } from "react-toastify";
 import { useRouter } from "next-nprogress-bar";
+import { GrUserWorker } from "react-icons/gr";
 
 const drawerWidth: number = 200;
 
@@ -142,6 +143,14 @@ const LayoutUser = () => {
                 <FaUser size="1.5em" />
               </ListItemIcon>
               <ListItemText primary="Customer" />
+            </ListItemButton>
+          </Link>
+          <Link href='/user/employee'>
+            <ListItemButton>
+              <ListItemIcon>
+                <GrUserWorker size="1.5em" />
+              </ListItemIcon>
+              <ListItemText primary="Employee" />
             </ListItemButton>
           </Link>
           <ListItemButton onClick={() => setReOp(!reOp)}>
