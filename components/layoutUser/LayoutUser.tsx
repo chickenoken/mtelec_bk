@@ -23,6 +23,8 @@ import { logout } from "./LayoutAction";
 import { toast } from "react-toastify";
 import { useRouter } from "next-nprogress-bar";
 import { GrUserWorker } from "react-icons/gr";
+import { RiPagesFill } from "react-icons/ri";
+import { RiPagesLine } from "react-icons/ri";
 
 const drawerWidth: number = 200;
 
@@ -77,7 +79,8 @@ const Drawer = styled(MuiDrawer, {
 const LayoutUser = () => {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => { setOpen(!open);};
-  const [reOp, setReOp] = React.useState(false);
+  const [rePage, setRePage] = React.useState(false);
+  const [reUser, setReUser] = React.useState(false);
   const router = useRouter();
 
   const handleLogout = async() => {
@@ -137,49 +140,14 @@ const LayoutUser = () => {
         </Toolbar>
         <Divider />
         <List component="nav">
-          <Link href='/user/customer'>
+          <Link href='/user/recruitment'>
             <ListItemButton>
               <ListItemIcon>
-                <FaUser size="1.5em" />
+                <BsBriefcaseFill size="1.5em"/>
               </ListItemIcon>
-              <ListItemText primary="Customer" />
+              <ListItemText primary="Recruitment" />
             </ListItemButton>
           </Link>
-          <Link href='/user/employee'>
-            <ListItemButton>
-              <ListItemIcon>
-                <GrUserWorker size="1.5em" />
-              </ListItemIcon>
-              <ListItemText primary="Employee" />
-            </ListItemButton>
-          </Link>
-          <ListItemButton onClick={() => setReOp(!reOp)}>
-            <ListItemIcon>
-              <BsBriefcaseFill size="1.5em" />
-            </ListItemIcon>
-            <ListItemText primary="Recruitment" />
-            {reOp ? <MdExpandLess /> : <MdExpandMore />}
-          </ListItemButton>
-          <Collapse in={reOp} timeout="auto" unmountOnExit>
-            <Link href='/user/recruitment'>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <BsBriefcaseFill />
-                  </ListItemIcon>
-                  <ListItemText primary="Recruitment" />
-                </ListItemButton>
-              </List>
-            </Link>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemIcon>
-                  <FaUserTie />
-                </ListItemIcon>
-                <ListItemText primary="Applicant" />
-              </ListItemButton>
-            </List>
-          </Collapse>
           <Link href='/user/project'>
             <ListItemButton>
               <ListItemIcon>
@@ -204,7 +172,96 @@ const LayoutUser = () => {
               <ListItemText primary="News" />
             </ListItemButton>
           </Link>
-          
+          <ListItemButton onClick={() => setRePage(!rePage)}>
+            <ListItemIcon>
+              <RiPagesFill size="1.5em" />
+            </ListItemIcon>
+            <ListItemText primary="Page" />
+            {rePage ? <MdExpandLess /> : <MdExpandMore />}
+          </ListItemButton>
+          <Collapse in={rePage} timeout="auto" unmountOnExit>
+            <Link href='/user/pages/index'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <RiPagesLine />
+                  </ListItemIcon>
+                  <ListItemText primary="Index" />
+                </ListItemButton>
+              </List>
+            </Link>
+
+            <Link href='/user/pages/about'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUserTie />
+                  </ListItemIcon>
+                  <ListItemText primary="About" />
+                </ListItemButton>
+              </List>
+            </Link>
+            <Link href='/user/pages/company'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUserTie />
+                  </ListItemIcon>
+                  <ListItemText primary="Company" />
+                </ListItemButton>
+              </List>
+            </Link>
+            <Link href='/user/employee'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUserTie />
+                  </ListItemIcon>
+                  <ListItemText primary="Employee" />
+                </ListItemButton>
+              </List>
+            </Link>
+            <Link href='/user/pages/ppe'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUserTie />
+                  </ListItemIcon>
+                  <ListItemText primary="PPE" />
+                </ListItemButton>
+              </List>
+            </Link>
+          </Collapse>
+
+
+
+          <ListItemButton onClick={() => setReUser(!reUser)}>
+            <ListItemIcon>
+              <RiPagesFill size="1.5em" />
+            </ListItemIcon>
+            <ListItemText primary="User" />
+            {reUser ? <MdExpandLess /> : <MdExpandMore />}
+          </ListItemButton>
+          <Collapse in={reUser} timeout="auto" unmountOnExit>
+            <Link href='/user/customer'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUser />
+                  </ListItemIcon>
+                  <ListItemText primary="Customer" />
+                </ListItemButton>
+              </List>
+            </Link>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <FaUserTie />
+                </ListItemIcon>
+                <ListItemText primary="Applicant" />
+              </ListItemButton>
+            </List>
+          </Collapse>
           <ListItemButton onClick={handleLogout}>
             <ListItemIcon>
               <IoLogOutOutline size="1.5em" />
