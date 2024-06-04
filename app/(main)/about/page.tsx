@@ -149,7 +149,7 @@ const page = () => {
         </Grid>
         <Grid container spacing={5}>
           <Grid md={3}>
-            <Typography variant="h5" className="font-bold italic underline text-white text-center">Mission</Typography>
+            <Typography variant="h5" className="font-bold italic underline text-white text-center">Core Values</Typography>
           </Grid>
           <Grid container md={9}>
             <Grid md={6}>
