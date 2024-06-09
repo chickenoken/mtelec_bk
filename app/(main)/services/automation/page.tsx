@@ -114,7 +114,10 @@ const page = () => {
         </AnimUp>
         <AnimUp>
         <Box display="flex" justifyContent="center" className="mt-10 p-8">
-          <Image className='mb-4' src="/asset/img/service/automation/img_1.png" alt="alt" width={500} height={500} />
+          <Image className='mb-4' src="/asset/img/service/automation/img_1.png" alt="alt" width={15000} height={15000} />
+        </Box>
+        <Box display="flex" justifyContent="center" className="mt-10 p-8">
+          <Image className='mb-4' src="/asset/img/service/automation/img_1.png" alt="alt" width={1000} height={1000} />
         </Box>
         </AnimUp>
         <AnimUp>
@@ -130,7 +133,6 @@ const page = () => {
           <Button className="h-16 px-8 py-5 mte-grey text-black text-xl font-bold mt-2" fullWidth variant="text">Other Services</Button>
         </Box>
         </AnimUp>
-
 
         {/* PROJECTS */}
         <AnimUp>

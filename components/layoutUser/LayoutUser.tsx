@@ -81,6 +81,7 @@ const LayoutUser = () => {
   const toggleDrawer = () => { setOpen(!open);};
   const [rePage, setRePage] = React.useState(false);
   const [reUser, setReUser] = React.useState(false);
+  const [reSer, setReSer] = React.useState(false);
   const router = useRouter();
 
   const handleLogout = async() => {
@@ -231,6 +232,73 @@ const LayoutUser = () => {
                 </ListItemButton>
               </List>
             </Link>
+          </Collapse>
+
+          <ListItemButton onClick={() => setReUser(!reUser)}>
+            <ListItemIcon>
+              <RiPagesFill size="1.5em" />
+            </ListItemIcon>
+            <ListItemText primary="Service" />
+            {reUser ? <MdExpandLess /> : <MdExpandMore />}
+          </ListItemButton>
+          <Collapse in={reUser} timeout="auto" unmountOnExit>
+            <Link href='/user/pages/electricDesign'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUser />
+                  </ListItemIcon>
+                  <ListItemText primary="Electrical" />
+                </ListItemButton>
+              </List>
+            </Link>
+
+            <Link href='/user/pages/automation'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUser />
+                  </ListItemIcon>
+                  <ListItemText primary="Automation" />
+                </ListItemButton>
+              </List>
+            </Link>
+
+            <Link href='/user/pages/solar'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUser />
+                  </ListItemIcon>
+                  <ListItemText primary="Solar" />
+                </ListItemButton>
+              </List>
+            </Link>
+
+            <Link href='/user/pages/elv'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUser />
+                  </ListItemIcon>
+                  <ListItemText primary="ELV" />
+                </ListItemButton>
+              </List>
+            </Link>
+
+            <Link href='/user/pages/hvac'>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <FaUser />
+                  </ListItemIcon>
+                  <ListItemText primary="HVAC" />
+                </ListItemButton>
+              </List>
+            </Link>
+
+
+            
           </Collapse>
 
 
