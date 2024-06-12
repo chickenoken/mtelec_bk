@@ -5,7 +5,7 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['oslo'],
     serverActions: {
-      bodySizeLimit: '10mb',
+      bodySizeLimit: '100mb',
     },
   },
   webpack: (config) => {

@@ -1,8 +1,10 @@
+"use client"
+import { getPCompanyInfo } from '@app/user/pages/company/_server/FormCompanyAction'
 import { MotionDiv } from '@components/motion/MotionDiv'
 import { Box, Container, Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Image from 'next/image'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { MdChevronRight } from 'react-icons/md'
 
 const page = () => {
@@ -22,6 +24,38 @@ const page = () => {
       </MotionDiv>
     );
   };
+
+  interface PAbout {
+    name: string;
+    type: string;
+    tax: string;
+    address: string;
+    tel: string;
+    email: string;
+    web: string;
+    fileName1: string;
+    image1: string;
+    fileName2: string;
+    image2: string;
+    fileName3: string;
+    image3: string;
+    fileName4: string;
+    image4: string;
+    fileName5: string;
+    image5: string;
+  }
+
+  const [data, setData] = React.useState<PAbout>();
+
+  const getData = async () => {
+    let rs = await getPCompanyInfo();
+    setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
 
   return (
     <Box sx={{
@@ -59,43 +93,43 @@ const page = () => {
               <Typography className='txt-mte font-bold'>Name Of Contractor</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>MINH THANH ELEC COMPANY LIMITED</Typography>
+              <Typography className=''>{data?.name}</Typography>
             </Grid>
             <Grid xs={3}>
               <Typography className='txt-mte font-bold'>Type Of Company</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>Owned Limited</Typography>
+              <Typography className=''>{data?.type}</Typography>
             </Grid>
             <Grid xs={3}>
               <Typography className='txt-mte font-bold'>Tax Number</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>0312887080</Typography>
+              <Typography className=''>{data?.tax}</Typography>
             </Grid>
             <Grid xs={3}>
               <Typography className='txt-mte font-bold'>Adress Of Office & Workshop</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>No 22, Street No 6, KP6, Binh Hung Hoa B Ward, Binh Tan District, Ho Chi Minh City, Viet Nam</Typography>
+              <Typography className=''>{data?.address}</Typography>
             </Grid>
             <Grid xs={3}>
               <Typography className='txt-mte font-bold'>Telephone Number</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>(84-28) 37 655 273- 37 655 274</Typography>
+              <Typography className=''>{data?.tel}</Typography>
             </Grid>
             <Grid xs={3}>
               <Typography className='txt-mte font-bold'>Email</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>mtelec@mtelec.vn</Typography>
+              <Typography className=''>{data?.email}</Typography>
             </Grid>
             <Grid xs={3}>
               <Typography className='txt-mte font-bold'>Website</Typography>
             </Grid>
             <Grid xs={8}>
-              <Typography className=''>https://www.mtelec.vn/</Typography>
+              <Typography className=''>{data?.web}</Typography>
             </Grid>
           </Grid>
         </Box>
@@ -109,50 +143,50 @@ const page = () => {
           <AnimUp>
           <Grid container justifyContent="center" alignItems="center">
             <Grid md={6}>
-              <Typography variant='h5' className='trilong italic font-bold'>Distributor Of Legrand Group</Typography>
+              <Typography variant='h5' className='trilong italic font-bold'>{data?.fileName1}</Typography>
             </Grid>
             <Grid md={6} className="flex items-center justify-center">
-              <Image src="/asset/img/about/company/img_1.png" alt="leg" width={420} height={420} />
+              <Image src={data?.image1 ?? ""} alt="leg" width={420} height={420} />
             </Grid>
           </Grid>
           </AnimUp>
           <AnimUp>
           <Grid className="mb-4" container justifyContent="center" alignItems="center">
             <Grid md={6}>
-              <Typography variant='h5' className='trilong italic font-bold'>Schneider Electric Certification</Typography>
+              <Typography variant='h5' className='trilong italic font-bold'>{data?.fileName2}</Typography>
             </Grid>
             <Grid md={6} className="flex items-center justify-center">
-              <Image src="/asset/img/about/company/img_2.png" alt="leg" width={420} height={420} />
+              <Image src={data?.image2 ?? ""} alt="leg" width={420} height={420} />
             </Grid>
           </Grid>
           </AnimUp>
           <AnimUp>
           <Grid className="mb-4" container justifyContent="center" alignItems="center">
             <Grid md={6}>
-              <Typography variant='h5' className='trilong italic font-bold'>Safe Man-hours - Cargill - Provimi</Typography>
+              <Typography variant='h5' className='trilong italic font-bold'>{data?.fileName3}</Typography>
             </Grid>
             <Grid md={6} className="flex items-center justify-center">
-              <Image src="/asset/img/about/company/img_3.png" alt="leg" width={420} height={420} />
+              <Image src={data?.image3 ?? ""} alt="leg" width={420} height={420} />
             </Grid>
           </Grid>
           </AnimUp>
           <AnimUp>
           <Grid className="mb-4" container justifyContent="center" alignItems="center">
             <Grid md={6}>
-              <Typography variant='h5' className='trilong italic font-bold'>Cargill - Provimi Appreciation Letter</Typography>
+              <Typography variant='h5' className='trilong italic font-bold'>{data?.fileName4}</Typography>
             </Grid>
             <Grid md={6} className="flex items-center justify-center">
-              <Image src="/asset/img/about/company/img_4.png" alt="leg" width={420} height={420} />
+              <Image src={data?.image4 ?? ""} alt="leg" width={420} height={420} />
             </Grid>
           </Grid>
           </AnimUp>
           <AnimUp>
           <Grid className="mb-4" container justifyContent="center" alignItems="center">
             <Grid md={6}>
-              <Typography variant='h5' className='trilong italic font-bold'>Most Meritorious Supplier Award</Typography>
+              <Typography variant='h5' className='trilong italic font-bold'>{data?.fileName5}</Typography>
             </Grid>
             <Grid md={6} className="flex items-center justify-center">
-              <Image src="/asset/img/about/company/img_5.png" alt="leg" width={420} height={420} />
+              <Image src={data?.image5 ?? ""} alt="leg" width={420} height={420} />
             </Grid>
           </Grid>
           </AnimUp>

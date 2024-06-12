@@ -1,14 +1,16 @@
+"use client"
 import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import Link from "next/link";
 import ImageChange from "./_component/Home/ImgChange/ImageChange";
 import ImgCarousel from "./_component/Home/imgCarousel/ImgCarousel";
 import LogoCarousel from "./_component/Home/logoCarousel/LogoCarousel";
 import ContactUs from "./_component/Home/contactUs/ContactUs";
+import { getPIndex } from "@app/user/pages/index/_server/FormIndexAction";
 
 export default function Home() {
   const itemData1 = [
@@ -97,6 +99,25 @@ export default function Home() {
     );
   };
 
+  interface PIndex {
+    about1: string;
+    about2: String;
+    concept: String;
+    image1: string;
+    image2: string;
+  }
+
+  const [data, setData] = React.useState<PIndex>();
+
+  const getData = async () => {
+    let rs = await getPIndex();
+    setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <Box>
@@ -110,19 +131,15 @@ export default function Home() {
             <Box>
               <Typography className="trilong italic font-bold" variant="h5" gutterBottom>About</Typography>
               <Typography variant="h3" className='font-bold txt-mte' gutterBottom>MTELEC</Typography>
-              <Typography align="justify" gutterBottom>
-                Our basic business is Electrical Engineering – Design, 
-                Industrial Installation, Energy Efficiency,Preventive Maintenance and Electrical Safety. 
-                MTELEC brings global electrical solutions to all professionals and people who are mindful of concept:
+              <Typography align="justify" gutterBottom> {data?.about1}
               </Typography>
               <Box className="px-2.5 py-6 my-6 bg-gradient-to-l from-stone-300 via-neutral-100 to-stone-300">
                 <Typography variant="h4" align="center" className='font-bold txt-mte'>
-                  Reliability, Quality, and Safety
+                {data?.concept}
                 </Typography>
               </Box>
               <Typography align="justify" gutterBottom>
-                Mtelec’s presence in Vietnam can be traced back to 1996, after 27 years of operation in VietNam,
-                MTELEC has already carried out many works for big cooperation in Viet Nam.
+                {data?.about2}
               </Typography>
               <Box className="mb-4 mt-6">
                 <Button className="bg2-mte pl-5  text-white text-left p-0 h-12" style={{ textTransform: 'none' }}>
