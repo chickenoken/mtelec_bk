@@ -13,7 +13,7 @@ import Companies from "@model/Companies";
 export const insertCompany = async (data: string[]) => {
 	await dbConnect();
 	for (let i of data) {
-		await Companies.create({ image: i });
+		await Companies.create({ path: i });
 	}
 
 	return { status: 200 };
@@ -46,14 +46,14 @@ export const getCompanyWithProduct = async () => {
 	return JSON.parse(JSON.stringify(companies));
 };
 
-export const updateCompany = async ({ id, image }: { id: string; image: string }) => {
+export const updateCompany = async ({ id, path }: { id: string; path: string }) => {
 	await dbConnect();
 	await Companies.updateOne(
 		{
 			_id: id,
 		},
 		{
-			image: image,
+			path,
 		}
 	);
 	return { status: 200 };

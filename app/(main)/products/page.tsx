@@ -9,13 +9,13 @@ import { default as ImgCarousel } from "../_component/Home/imgCarousel/ImgCarous
 export interface IProduct {
 	_id: string;
 	title: string;
-	image: string;
+	path: string;
 	company: string;
 }
 
 interface ICompanyWithProduct {
 	_id: string;
-	image: string;
+	path: string;
 	products: IProduct[];
 }
 
@@ -88,7 +88,7 @@ const pages = async () => {
 				{res?.map((i: ICompanyWithProduct) => (
 					<AnimUp key={i._id}>
 						<Box className="mb-14">
-							<Image src={i.image} alt="hero" width={300} height={300} className="mb-4" />
+							<Image src={i.path} alt="hero" width={300} height={300} className="mb-4" />
 							<ImgCarousel mode={i.products} />
 						</Box>
 					</AnimUp>

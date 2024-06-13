@@ -56,7 +56,7 @@ const FormCompany = ({ id }: FormCategoriesProps) => {
 
 			const re = await updateCompany({
 				id: id as string,
-				image,
+				path: image,
 			});
 
 			if (re.status === 200) {
@@ -71,10 +71,10 @@ const FormCompany = ({ id }: FormCategoriesProps) => {
 		if (id) {
 			let res = await getCompanyById(id);
 			if (res) {
-				setCurrentImg(res.image);
-				setValue("image", res.image);
+				setCurrentImg(res.path);
+				setValue("image", res.path);
 				setValue("_id", id);
-				setImageSrc(res.image);
+				setImageSrc(res.path);
 			}
 		}
 	};

@@ -63,7 +63,7 @@ const TableCompany = () => {
 									>
 										<TableCell>{row._id}</TableCell>
 										<TableCell>
-											<Image src={row.image} alt="image" width={100} height={100} />
+											<Image src={row.path} alt="image" width={100} height={100} />
 										</TableCell>
 										<TableCell width="370px"></TableCell>
 										<TableCell>

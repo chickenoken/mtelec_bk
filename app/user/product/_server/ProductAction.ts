@@ -10,7 +10,7 @@ interface IClientData {
 interface IUpdateProduct {
 	id: string;
 	title: string;
-	image: string;
+	path: string;
 }
 
 // products
@@ -38,13 +38,13 @@ interface IUpdateProduct {
  * 
  * add multiple inside input type file
  */
-export const insertProduct = async (clientData: IClientData[], image: string[], company: string) => {
+export const insertProduct = async (clientData: IClientData[], path: string[], company: string) => {
 	await dbConnect();
 
 	for (let i = 0; i < clientData.length; i++) {
 		const product = new Products();
 		product.title = clientData[i].title;
-		product.image = image[i];
+		product.path = path[i];
 		product.company = company;
 		await product.save();
 	}
@@ -73,13 +73,13 @@ export const getProductById = async (id: string) => {
 };
 
 export const updateProduct = async (data: IUpdateProduct) => {
-	const { title, image, id } = data;
+	const { title, path, id } = data;
 	await dbConnect();
 	await Products.updateOne(
 		{ _id: id },
 		{
 			title,
-			image,
+			path,
 		}
 	);
 	return { status: 200 };
