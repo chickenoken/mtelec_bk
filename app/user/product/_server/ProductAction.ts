@@ -26,6 +26,8 @@ interface IUpdateProduct {
 			setA((prev) => [...prev, ba64]);
 	}}
 
+	=> in this ex i user itemData4, we have 4 data to insert from 1 to 4. And image must be in order of each image in the product. company field it a id of company. by the way, you must insert company first before insert product.
+
 		const handleSave1 = async () => {
 		const { cate_name: company } = getValues();
 		await insertProduct(itemData4, a, company);

@@ -33,7 +33,6 @@ export const getAllCompanies = async () => {
 
 export const getCompanyWithProduct = async () => {
 	await dbConnect();
-	// const companies = await Companies.find({}).populate("products");
 	const companies = await Companies.aggregate([
 		{
 			$lookup: {
