@@ -103,11 +103,7 @@ const FormCompany = ({ id }: FormCategoriesProps) => {
 				</Box>
 				<Box className="w-1/2 mb-4">
 					{/* @ts-ignore */}
-					{errors.cate_name && (
-						<Typography variant="caption" color={"red"}>
-							{errors.cate_name.message}
-						</Typography>
-					)}
+					{errors.cate_name && (<Typography variant="caption" color={"red"}>{errors.cate_name.message}</Typography>)}
 				</Box>
 				<Box className="w-40 mb-4">
 					<Typography variant="h6" gutterBottom>

@@ -120,10 +120,7 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 						{...register("title")}
 					/>
 					{/* @ts-ignore */}
-					{errors.title && (
-						<Typography variant="caption" color={"red"}>
-							{errors.title.message}
-						</Typography>
+					{errors.title && (<Typography variant="caption" color={"red"}>{errors.title.message}</Typography>
 					)}
 				</Box>
 				<Box className="w-40 mb-4">

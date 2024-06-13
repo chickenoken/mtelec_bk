@@ -7,22 +7,23 @@ import { MdChevronRight } from 'react-icons/md'
 import ImageLinks from '../_component/ImageLinks'
 import ImgCarousel from '@app/(main)/_component/Home/imgCarousel/ImgCarousel'
 import ContactUs from '@app/(main)/_component/Home/contactUs/ContactUs'
+import { IProduct } from '@app/(main)/products/page'
 
 const page = () => {
-  const itemData = [
-    { title: 'Fire Alarm System', path: '/asset/img/service/elv/imgLink_1.png',},
-    { title: 'Fire Alarm System', path: '/asset/img/service/elv/imgLink_2.png',},
-    { title: 'Public Address and Telephone System', path: '/asset/img/service/elv/imgLink_3.png',},
-    { title: 'CCTV Control Panel', path: '/asset/img/service/elv/imgLink_4.png',},
+  const itemData: IProduct[] = [
+    {  _id: '1', company: '', title: 'Fire Alarm System', path: '/asset/img/service/elv/imgLink_1.png',},
+    {  _id: '1', company: '', title: 'Fire Alarm System', path: '/asset/img/service/elv/imgLink_2.png',},
+    {  _id: '1', company: '', title: 'Public Address and Telephone System', path: '/asset/img/service/elv/imgLink_3.png',},
+    {  _id: '1', company: '', title: 'CCTV Control Panel', path: '/asset/img/service/elv/imgLink_4.png',},
   ];
 
-  const itemData1 = [
-    { title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
-    { title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
-    { title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
-    { title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
-    { title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
-    { title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
+  const itemData1: IProduct[] = [
+    {  _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
+    {  _id: '1', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
+    {  _id: '1', company: '', title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
+    {  _id: '1', company: '', title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
+    {  _id: '1', company: '', title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
+    {  _id: '1', company: '', title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
   ];
 
   const AnimUp = ({ children }: { children: ReactNode }) => {
