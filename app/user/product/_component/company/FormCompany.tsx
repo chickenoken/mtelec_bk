@@ -1,38 +1,33 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { CommonService } from "@lib/CommonService";
 import { DialogService } from "@lib/DialogService";
-import { Box, Button, Card, CardMedia, Divider, FormControl, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardMedia, Divider, FormControl, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaArrowLeft, FaRegSave } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { z } from "zod";
-import { getCateById, saveCate, updateCate } from "../_server/FormCategoriesAction";
-import FormCateProject from "./FormCateProject";
+import { getCompanyById, updateCompany } from "../../_server/CompanyAction";
+import FormCompanyProduct from "./FormCompanyProduct";
 
 interface FormCategoriesProps {
 	id: string | null;
 }
 
-const FormCategories = ({ id }: FormCategoriesProps) => {
+const FormCompany = ({ id }: FormCategoriesProps) => {
 	const router = useRouter();
-	const schema = z.object({
-		cate_name: z.string().min(4, "User Name must be at least 3 characters"),
-	});
 
 	const {
 		register,
 		trigger,
 		formState: { errors },
-		watch,
 		setValue,
 		getValues,
-	} = useForm({ resolver: zodResolver(schema) });
+	} = useForm();
 	const fileImg = useRef<HTMLInputElement>(null);
 	const [imageSrc, setImageSrc] = useState<string | null>(null);
+	const [currentImg, setCurrentImg] = useState<string>("");
 
 	const handleUploadClick = (event: any) => {
 		fileImg.current?.click();
@@ -45,95 +40,68 @@ const FormCategories = ({ id }: FormCategoriesProps) => {
 		setValue("image", b64File);
 	};
 
-	const handleSave = async () => {
-		let valid = await trigger();
-		if (!valid) return toast.warn("Validate Failed");
-
-		DialogService.save("Do you want to save the changes ?", async () => {
-			let param = getValues();
-			let re = await saveCate(param);
-			if (re.status === 200) {
-				DialogService.success("Your data has been saved", () => {
-					router.push("/user/categories");
-				});
-			}
-		});
-	};
-
 	const handleUpdate = async () => {
 		let valid = await trigger();
 		if (!valid) return toast.warn("Validate Failed");
 
 		DialogService.save("Do you want to save the changes ?", async () => {
-			let param = getValues();
-			let re = await updateCate(param);
+			const { image } = getValues();
+
+			if (image === currentImg) {
+				DialogService.success("Your data not change", () => {
+					router.push("/user/product");
+				});
+				return;
+			}
+
+			const re = await updateCompany({
+				id: id as string,
+				image,
+			});
+
 			if (re.status === 200) {
 				DialogService.success("Your data has been saved", () => {
-					router.push("/user/categories");
+					router.push("/user/product");
 				});
 			}
 		});
 	};
 
-	const getDataById = async (data: any) => {
+	const getDataById = async () => {
 		if (id) {
-			let rs = await getCateById(id);
-			if (rs) {
-				for (const [key, value] of Object.entries(rs)) {
-					setValue(key, value);
-				}
+			let res = await getCompanyById(id);
+			if (res) {
+				setCurrentImg(res.image);
+				setValue("image", res.image);
 				setValue("_id", id);
-				setImageSrc(rs.image);
+				setImageSrc(res.image);
 			}
 		}
 	};
 
 	useEffect(() => {
-		getDataById({ id });
-	}, []);
+		getDataById();
+	}, [id]);
 
 	return (
 		<>
 			<FormControl>
 				<Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-					<Link href="/user/categories">
+					<Link href="/user/product">
 						<Button variant="outlined" color="secondary" startIcon={<FaArrowLeft />}>
 							Back
 						</Button>
 					</Link>
-					{!id && (
-						<Button
-							onClick={handleSave}
-							variant="contained"
-							className="bg-blue-600"
-							startIcon={<FaRegSave />}
-						>
-							Save
-						</Button>
-					)}
-					{id && (
-						<Button
-							onClick={handleUpdate}
-							variant="contained"
-							className="bg-blue-600"
-							startIcon={<FaRegSave />}
-						>
-							Update
-						</Button>
-					)}
+					<Button
+						onClick={handleUpdate}
+						variant="contained"
+						className="bg-blue-600"
+						startIcon={<FaRegSave />}
+					>
+						Update
+					</Button>
 				</Box>
 				<Box className="w-1/2 mb-4">
-					<TextField
-						error={Boolean(errors.cate_name)}
-						InputLabelProps={{ shrink: !!watch("cate_name") }}
-						required
-						fullWidth
-						variant="outlined"
-						size="small"
-						label="Catergory Name"
-						autoFocus
-						{...register("cate_name")}
-					/>
 					{/* @ts-ignore */}
 					{errors.cate_name && (
 						<Typography variant="caption" color={"red"}>
@@ -146,7 +114,7 @@ const FormCategories = ({ id }: FormCategoriesProps) => {
 						Image Logo
 					</Typography>
 					<input
-						multiple
+						type="file"
 						{...register("image")}
 						ref={fileImg}
 						style={{ display: "none" }}
@@ -171,13 +139,13 @@ const FormCategories = ({ id }: FormCategoriesProps) => {
 				<>
 					<Divider className="my-4" />
 					<Typography variant="h6" gutterBottom>
-						Category Project Detail
+						Product List Company
 					</Typography>
-					<FormCateProject id={id} />
+					<FormCompanyProduct id={id} />
 				</>
 			)}
 		</>
 	);
 };
 
-export default FormCategories;
+export default FormCompany;
