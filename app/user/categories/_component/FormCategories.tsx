@@ -146,7 +146,7 @@ const FormCategories = ({ id }: FormCategoriesProps) => {
 						Image Logo
 					</Typography>
 					<input
-						multiple
+						type="file"
 						{...register("image")}
 						ref={fileImg}
 						style={{ display: "none" }}
