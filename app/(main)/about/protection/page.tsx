@@ -1,8 +1,10 @@
+"use client"
+import { getPPPE } from "@app/user/pages/ppe/server/FormPPEAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Card, CardActionArea, CardContent, Container, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Image from "next/image"
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { BsDot } from "react-icons/bs";
 import { MdChevronRight } from "react-icons/md";
 
@@ -23,6 +25,31 @@ const page = () => {
       </MotionDiv>
     );
   };
+
+  interface IPPPE {
+    image1: string;
+    title1: string;
+    content1: string[];
+    title2: string;
+    content2: string[];
+    title3: string;
+    content3: string[];
+  }
+
+  const [data, setData] = React.useState<IPPPE>();
+
+  const getData = async () => {
+    let rs = await getPPPE();
+    rs.content1 = rs.content1.split('\n');
+    rs.content2 = rs.content2.split('\n');
+    rs.content3 = rs.content3.split('\n');
+    console.log(rs);
+    setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
   
   return (
     <>
@@ -55,7 +82,7 @@ const page = () => {
           <AnimUp>
           <Typography variant="h5" className="text-center mb-14">MTELEC PPE</Typography>
           <Box display="flex" justifyContent="center" className="mb-10" >
-            <Image alt="mte-pbe" src="/asset/img/about/protection/body.png" width={800} height={800} />
+            <Image alt="mte-pbe" src={data?.image1 ?? ""} width={800} height={800} />
           </Box>
           </AnimUp>
 
@@ -70,20 +97,16 @@ const page = () => {
                     </Grid>
                     <Grid md={10}>
                       <Typography gutterBottom className="font-bold">
-                        1. PROTECT THE HEAD
+                        {data?.title1}
                       </Typography>
-                      <Box display="flex">
-                        <BsDot className="me-2"/>
-                        <Typography variant="body2">
-                          Welding protection helmets are mandatory when welding work begins.
-                        </Typography>
-                      </Box>
-                      <Box display="flex">
-                        <BsDot className="me-2"/>
-                        <Typography variant="body2">
-                          They help avoid the effects of UV rays, infrared rays, melting slag rays on the eyes and face.
-                        </Typography>
-                      </Box>
+                      {data?.content1 ? data.content1.map((val: string, ind: number) => (
+                          <Box display="flex" key={ind}>
+                            <BsDot className="me-2"/>
+                            <Typography variant="body2">
+                              {val}
+                            </Typography>
+                          </Box>
+                      )) : null}
                     </Grid>
                   </Grid>
                 </CardContent>
@@ -102,26 +125,16 @@ const page = () => {
                     </Grid>
                     <Grid md={10}>
                       <Typography gutterBottom className="font-bold">
-                        2. PROTECTIVE CLOTHING
+                        {data?.title2}
                       </Typography>
-                      <Box display="flex">
-                        <BsDot className="me-2"/>
-                        <Typography variant="body2">
-                          Protect the legs, arms and neck skin of the welding worker. 
-                        </Typography>
-                      </Box>
-                      <Box display="flex">
-                        <BsDot className="me-2"/>
-                        <Typography variant="body2">
-                          Workers’ clothes are made of noncombustible materials. Leather is always a safe choice to prevent burn for workers. 
-                        </Typography>
-                      </Box>
-                      <Box display="flex">
-                        <BsDot className="me-2"/>
-                        <Typography variant="body2">
-                          Provide gloves because the hand is the closest contact with welding sparks
-                        </Typography>
-                      </Box>
+                      {data?.content2 ? data.content2.map((val: string, ind: number) => (
+                          <Box display="flex" key={ind}>
+                            <BsDot className="me-2"/>
+                            <Typography variant="body2">
+                              {val}
+                            </Typography>
+                          </Box>
+                      )) : null}
                     </Grid>
                   </Grid>
                 </CardContent>
@@ -140,14 +153,16 @@ const page = () => {
                     </Grid>
                     <Grid md={10}>
                       <Typography gutterBottom className="font-bold">
-                        3. LABOR PROTECTION
+                        {data?.title3}
                       </Typography>
-                      <Box display="flex">
-                        <BsDot className="me-2"/>
-                        <Typography variant="body2">
-                          Provide safety equipment such as safety hats, gloves, cords, shoes, cutting face shield, ear plug... to ensure safety for workers
-                        </Typography>
-                      </Box>
+                      {data?.content3 ? data.content3.map((val: string, ind: number) => (
+                          <Box display="flex" key={ind}>
+                            <BsDot className="me-2"/>
+                            <Typography variant="body2">
+                              {val}
+                            </Typography>
+                          </Box>
+                      )) : null}
                     </Grid>
                   </Grid>
                 </CardContent>

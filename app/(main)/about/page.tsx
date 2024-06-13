@@ -1,9 +1,11 @@
+"use client"
+import { getPAbout } from "@app/user/pages/about/server/FormAboutAction"
 import { MotionDiv } from "@components/motion/MotionDiv"
 import { Box, Container, Button, Typography, Card, ImageListItemBar, ImageListItem, CardActionArea } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Image from "next/image"
 import Link from "next/link"
-import { ReactNode } from "react"
+import React, { ReactNode, useEffect } from "react"
 import { MdChevronRight } from "react-icons/md"
 
 const page = () => {
@@ -23,6 +25,58 @@ const page = () => {
       </MotionDiv>
     );
   };
+
+  interface PAbout {
+    title: string;
+    content: string;
+    desc: string;
+    image1: string;
+    image2: string;
+    team_title: string;
+    team_content: string;
+    icon1: string;
+    icon_name1: string;
+    icon_desc1: string;
+    icon2: string;
+    icon_name2: string;
+    icon_desc2: string;
+    icon3: string;
+    icon_name3: string;
+    icon_desc3: string;
+    vision: string;
+    val1: string;
+    val_title1: string;
+    val_desc1: string;
+    val2: string;
+    val_title2: string;
+    val_desc2: string;
+    val3: string;
+    val_title3: string;
+    val_desc3: string;
+    core1: string;
+    core_title1: string;
+    core_desc1: string;
+    core2: string;
+    core_title2: string;
+    core_desc2: string;
+    core3: string;
+    core_title3: string;
+    core_desc3: string;
+    core4: string;
+    core_title4: string;
+    core_desc4: string;
+  }
+
+  const [data, setData] = React.useState<PAbout>();
+
+  const getData = async () => {
+    let rs = await getPAbout();
+    setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -51,20 +105,20 @@ const page = () => {
           <Grid md={6}>
             <Box>
               <Typography className="trilong italic font-bold" variant="h5" gutterBottom>Our Company</Typography>
-              <Typography variant="h3" className='font-bold txt-mte' gutterBottom>Powering Your World with Innovative Electrical Solutions</Typography>
+              <Typography variant="h3" className='font-bold txt-mte' gutterBottom>{data?.title}</Typography>
               <Typography align="justify" gutterBottom>
-                Our basic business is Electrical Engineering – Design, Industrial Installation, Energy Efficiency, Preventive Maintenance and Electrical Safety. MTELEC brings global electrical solutions to all professionals and people who are mindful of concept:
+                {data?.content}
               </Typography>
               <Box className="px-2.5 py-6 my-6 bg-gradient-to-l from-stone-300 via-neutral-100 to-stone-300">
                 <Typography variant="h4" align="center" className='font-bold txt-mte'>
-                  Reliability, Quality, and Safety
+                {data?.desc}
                 </Typography>
               </Box>
             </Box>
           </Grid>
           <Grid md={6} >
             <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
-              <Image key={1} src="/asset/img/home/about/img_1.jpg" alt="alt" width={500} height={450} style={{ zIndex: 1, boxShadow: '2rem -2rem black'}}/>
+              <Image key={1} src={data?.image1 ?? ""} alt="alt" width={500} height={450} style={{ zIndex: 1, boxShadow: '2rem -2rem black'}}/>
             </Box>
           </Grid>
         </Grid>
@@ -75,28 +129,28 @@ const page = () => {
           <Grid container spacing={5}>
             <Grid md={4}>
               <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                <Image src="/asset/img/about/shield.svg" alt="alt" width={70} height={70} />
+                <Image src={data?.icon1 ?? ""} alt="alt" width={70} height={70} />
                 <Box className="ml-2">
-                  <Typography variant="h4" className="font-bold txt-mte">20+</Typography>
-                  <Typography>years of experience</Typography>
+                  <Typography variant="h4" className="font-bold txt-mte">{data?.icon_name1 ?? ""}</Typography>
+                  <Typography>{data?.icon_desc1}</Typography>
                 </Box>
               </Box>
             </Grid>
             <Grid md={4}>
               <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                  <Image src="/asset/img/about/shield.svg" alt="alt" width={70} height={70} />
+                  <Image src={data?.icon2 ?? ""} alt="alt" width={70} height={70} />
                   <Box className="ml-2">
-                    <Typography variant="h4" className="font-bold txt-mte">100+</Typography>
-                    <Typography>successful projects</Typography>
+                    <Typography variant="h4" className="font-bold txt-mte">{data?.icon_name2 ?? ""}</Typography>
+                    <Typography>{data?.icon_desc2}</Typography>
                   </Box>
                 </Box>
             </Grid>
             <Grid md={4}>
               <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                <Image src="/asset/img/about/shield.svg" alt="alt" width={70} height={70} />
+                <Image src={data?.icon3 ?? ""} alt="alt" width={70} height={70} />
                 <Box className="ml-2">
-                  <Typography variant="h4" className="font-bold txt-mte">90%</Typography>
-                  <Typography>satisfied customers</Typography>
+                  <Typography variant="h4" className="font-bold txt-mte">{data?.icon_name3 ?? ""}</Typography>
+                  <Typography>{data?.icon_desc3}</Typography>
                 </Box>
               </Box>
             </Grid>
@@ -115,7 +169,7 @@ const page = () => {
             <Typography variant="h5" className="font-bold italic underline text-white text-center">Vision</Typography>
           </Grid>
           <Grid md={9}>
-            <Typography align="justify" className="text-white">Our vision is to be a highly successful Company in an electrical energy sector and delivering best service and best products with most competitive price to our customers.</Typography>
+            <Typography align="justify" className="text-white">{data?.vision}</Typography>
           </Grid>
         </Grid>
 
@@ -126,23 +180,23 @@ const page = () => {
           <Grid container md={9}>
             <Grid md={4}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
-                <Image src="/asset/img/about/icon1.svg" alt="alt" width={70} height={70} />
-                <Typography className="font-bold text-white">Top-Quality Services</Typography>
-                <Typography align="justify" className="text-xs text-white">Our mission is to provide top-quality electrical engineering services to our clients, delivering innovative solutions for Design, Industrial Installation, Energy Efficiency, Preventive Maintenance, Electrical Safety.</Typography>
+                <Image src={data?.val1 ?? ""} alt="alt" width={70} height={70} />
+                <Typography className="font-bold text-white">{data?.val_title1}</Typography>
+                <Typography align="justify" className="text-xs text-white">{data?.val_desc1}</Typography>
               </Card>
             </Grid>
             <Grid md={4}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
-                <Image src="/asset/img/about/icon2.svg" alt="alt" width={70} height={70} />
-                <Typography className="font-bold text-white">Exceptional Value</Typography>
-                <Typography align="justify" className="text-xs text-white">We are committed to delivering exceptional value to our customers, ensuring their operations run smoothly, safely, and efficiently. </Typography>
+                <Image src={data?.val2 ?? ""} alt="alt" width={70} height={70} />
+                <Typography className="font-bold text-white">{data?.val_title2}</Typography>
+                <Typography align="justify" className="text-xs text-white">{data?.val_desc2}</Typography>
               </Card>
             </Grid>
             <Grid md={4}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
-                <Image src="/asset/img/about/icon3.svg" alt="alt" width={70} height={70} />
-                <Typography className="font-bold text-white">Long-lasting Commitments</Typography>
-                <Typography align="justify" className="text-xs text-white">We prioritize the safety and well-being of our employees, customers, and partners, and are dedicated to building long-lasting relationships with our customers based on trust, reliability, and excellence.</Typography>
+                <Image src={data?.val3 ?? ""} alt="alt" width={70} height={70} />
+                <Typography className="font-bold text-white">{data?.val_title3 ?? ""}</Typography>
+                <Typography align="justify" className="text-xs text-white">{data?.val_desc3}</Typography>
               </Card>
             </Grid>
           </Grid>
@@ -155,10 +209,10 @@ const page = () => {
             <Grid md={6}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
                 <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                  <Image src="/asset/img/about/icon4.svg" alt="alt" width={70} height={70} />
+                  <Image src={data?.core1 ?? ""} alt="alt" width={70} height={70} />
                   <Box className="ml-2">
-                    <Typography className="font-bold text-white">Customer Focus:</Typography>
-                    <Typography align="justify" className="text-xs text-white">Our goal is to have a good relationship with customers and get to know them well to ensure that we deliver exactly the service they require</Typography>
+                    <Typography className="font-bold text-white">{data?.core_title1}</Typography>
+                    <Typography align="justify" className="text-xs text-white">{data?.core_desc1}</Typography>
                   </Box>
                 </Box>
               </Card>
@@ -166,10 +220,10 @@ const page = () => {
             <Grid md={6}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
                 <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                  <Image src="/asset/img/about/icon5.svg" alt="alt" width={70} height={70} />
+                  <Image src={data?.core2 ?? ""} alt="alt" width={70} height={70} />
                   <Box className="ml-2">
-                    <Typography className="font-bold text-white">Quality:</Typography>
-                    <Typography align="justify" className="text-xs text-white">We provide high standards for our service and products is a representation of who we are.</Typography>
+                    <Typography className="font-bold text-white">{data?.core_title2}</Typography>
+                    <Typography align="justify" className="text-xs text-white">{data?.core_desc2}</Typography>
                   </Box>
                 </Box>
               </Card>
@@ -177,10 +231,10 @@ const page = () => {
             <Grid md={6}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
                 <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                  <Image src="/asset/img/about/icon6.svg" alt="alt" width={70} height={70} />
+                  <Image src={data?.core3 ?? ""} alt="alt" width={70} height={70} />
                   <Box className="ml-2">
-                    <Typography className="font-bold text-white">Safety</Typography>
-                    <Typography align="justify" className="text-xs text-white">We will always put safety first–for our People, Contractors, Customers and Communities. Safety comes before everything at MTELEC. We measure our success by how safely we achieve our goals.</Typography>
+                    <Typography className="font-bold text-white">{data?.core_title3}</Typography>
+                    <Typography align="justify" className="text-xs text-white">{data?.core_desc3}</Typography>
                   </Box>
                 </Box>
               </Card>
@@ -188,10 +242,10 @@ const page = () => {
             <Grid md={6}>
               <Card className="bg-transparent border-slate-50 p-2 h-full" variant="outlined">
                 <Box className="flex justify-center" sx={{ alignItems: 'center' }}>
-                  <Image src="/asset/img/about/icon7.svg" alt="alt" width={70} height={70} />
+                  <Image src={data?.core4 ?? ""} alt="alt" width={70} height={70} />
                   <Box className="ml-2">
-                    <Typography className="font-bold text-white">Integrity:</Typography>
-                    <Typography align="justify" className="text-xs text-white">We are honest, trustworthy and dependable. Integrity is at the core of all we do – how we conduct ourselves and interact with all of our Customers.</Typography>
+                    <Typography className="font-bold text-white">{data?.core_title4}</Typography>
+                    <Typography align="justify" className="text-xs text-white">{data?.core_desc4}</Typography>
                   </Box>
                 </Box>
               </Card>
@@ -207,15 +261,15 @@ const page = () => {
           <Grid md={6}>
             <Box>
               <Typography className="trilong italic font-bold" variant="h5" gutterBottom>Our Team</Typography>
-              <Typography variant="h3" className='font-bold txt-mte' gutterBottom>Best Team Of Professional Experts</Typography>
+              <Typography variant="h3" className='font-bold txt-mte' gutterBottom>{data?.team_title}</Typography>
               <Typography align="justify" gutterBottom>
-                Apart from providing electrical services and products, MTELEC is proud of having a team of highly experienced staffs with an excellent customer care. This team has helped to improve the standard of electrical works in Viet Nam and to ensure electrical safety.
+                {data?.team_content}
               </Typography>
             </Box>
           </Grid>
           <Grid md={6}>
             <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
-              <Image key={1} src="/asset/img/about/img_1.png" alt="alt" width={500} height={450} style={{ zIndex: 1, boxShadow: '2rem -2rem black'}}/>
+              <Image key={1} src={data?.image2 ?? ""} alt="alt" width={500} height={450} style={{ zIndex: 1, boxShadow: '2rem -2rem black'}}/>
             </Box>
           </Grid>
         </Grid>

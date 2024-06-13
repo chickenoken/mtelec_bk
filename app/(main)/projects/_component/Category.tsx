@@ -145,8 +145,9 @@ const Category = () => {
       <Box className="max-h-[600px] overflow-y-auto overflow-x-hidden">
         <Grid container spacing={5} className="mt-4">
           {catePrj.map((item, index) => (
-            <React.Fragment key={index}>
-              <Grid md={2}>
+            <Box className="w-1/2 mb-10">
+              <Box className="h-full" display="flex">
+              <Box className="w-1/3 ms-6">
                 <Button className="bg-mte text-white px-5" variant="text">{item.cate_title}</Button>
                 <List>
                   <ListItem disablePadding>
@@ -156,9 +157,9 @@ const Category = () => {
                     <ListItemText primary={<Typography variant="body1" sx={{ fontWeight: 700 }}>{item.location}</Typography>}/>
                   </ListItem>
                 </List>
-                <Typography variant="h6" className="h-[60%] ms-2 txt-mte flex items-center">{item.cate_pro_name}</Typography>
-              </Grid>
-              <Grid md={4} >
+                <Typography variant="h6" className="ms-2 txt-mte flex items-center">{item.cate_pro_name}</Typography>
+              </Box>
+              <Box className="w-2/3" >
                 {item.detail.map((item: any, index: number) => (
                   <ListItem alignItems="flex-start" key={index} sx={{ padding: '0', margin: '0' }}>
                     <ListItemIcon sx={{ minWidth: '30px', ml: item.endsWith(':') ? 0 : 2  }}>
@@ -168,8 +169,10 @@ const Category = () => {
                         primaryTypographyProps={{ fontWeight: item.endsWith(':') ? 'bold' : 'normal' }} />
                   </ListItem>
                 ))}
-              </Grid>
-            </React.Fragment>
+              </Box>
+              </Box>
+              {index < catePrj.length - 1 && <Divider className="bg-mte mt-5" />}
+            </Box>
           ))}
         </Grid>
       </Box>
