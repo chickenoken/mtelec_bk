@@ -42,7 +42,7 @@ export const getPElectricDesign = async () => {
 export const getPElectricWorkingField = async () => {
 	await dbConnect();
 	const res = await PElectricDesign.find({}, { workingFields: 1 });
-	return JSON.parse(JSON.stringify(res[0].workingFields));
+	return res.length ? JSON.parse(JSON.stringify(res[0].workingFields)) : [];
 };
 
 export const getPElectricDataById = async (id: string) => {

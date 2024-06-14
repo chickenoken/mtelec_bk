@@ -1,6 +1,7 @@
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
+import { IProduct } from "@app/(main)/products/page";
 import { getPSolarWorkingField } from "@app/user/pages/solar/server/FormSolarAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Button, Container, Typography } from "@mui/material";
@@ -12,23 +13,78 @@ import { IWorkingField } from "../automation/page";
 
 const page = async () => {
 	const workingField: IWorkingField[] = await getPSolarWorkingField();
-  const itemData: IProduct[] = [
-    { _id: '1', company: '', title: 'AC and PV Cable Installation inside Cable Trays', path: '/asset/img/service/solar/imgLink_1.png',},
-    { _id: '1', company: '', title: 'AC and PV Cable Installation inside Cable Trays', path: '/asset/img/service/solar/imgLink_2.png',},
-    { _id: '1', company: '', title: 'Cable Raceway Installation', path: '/asset/img/service/solar/imgLink_3.png',},
-    { _id: '1', company: '', title: 'Cable Raceway Installation', path: '/asset/img/service/solar/imgLink_4.png',},
-    { _id: '1', company: '', title: 'Inverter Installation', path: '/asset/img/service/solar/imgLink_5.png',},
-    { _id: '1', company: '', title: 'MDB and Load Center Installation', path: '/asset/img/service/solar/imgLink_6.png',},
-  ];
+	const itemData: IProduct[] = [
+		{
+			_id: "1",
+			company: "",
+			title: "AC and PV Cable Installation inside Cable Trays",
+			path: "/asset/img/service/solar/imgLink_1.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "AC and PV Cable Installation inside Cable Trays",
+			path: "/asset/img/service/solar/imgLink_2.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Cable Raceway Installation",
+			path: "/asset/img/service/solar/imgLink_3.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Cable Raceway Installation",
+			path: "/asset/img/service/solar/imgLink_4.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Inverter Installation",
+			path: "/asset/img/service/solar/imgLink_5.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "MDB and Load Center Installation",
+			path: "/asset/img/service/solar/imgLink_6.png",
+		},
+	];
 
-  const itemData1: IProduct[] = [
-    { _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
-    { _id: '1', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
-    { _id: '1', company: '', title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
-    { _id: '1', company: '', title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
-    { _id: '1', company: '', title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
-    { _id: '1', company: '', title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
-  ];
+	const itemData1: IProduct[] = [
+		{
+			_id: "1",
+			company: "",
+			title: "AUTOMATION DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_1.png",
+		},
+		{ _id: "1", company: "", title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
+		{
+			_id: "1",
+			company: "",
+			title: "HVAC DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_3.jpg",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "ELV DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_4.jpg",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "ELECTRICAL SERVICE",
+			path: "/asset/img/home/carousel1/carousel_5.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "ELECTRICAL DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_6.jpg",
+		},
+	];
 
 	const AnimUp = ({ children }: { children: ReactNode }) => {
 		return (
@@ -82,17 +138,23 @@ const page = async () => {
 				</AnimUp>
 			</Box>
 			<Container>
-				<AnimUp>
-					<Box
-						className="mt-10 p-8"
-						sx={{ backgroundImage: `url('/asset/img/about/bg_1.png')`, backgroundSize: "cover" }}
-					>
-						<Typography variant="h5" className="font-bold trilong italic mb-4">
-							Working Fields
-						</Typography>
-						<RenderWorkingField workingField={workingField} />
-					</Box>
-				</AnimUp>
+				{!!workingField.length && (
+					<AnimUp>
+						<Box
+							className="mt-10 p-8"
+							sx={{
+								backgroundImage: `url('/asset/img/about/bg_1.png')`,
+								backgroundSize: "cover",
+							}}
+						>
+							<Typography variant="h5" className="font-bold trilong italic mb-4">
+								Working Fields
+							</Typography>
+							<RenderWorkingField workingField={workingField} />
+						</Box>
+					</AnimUp>
+				)}
+
 				<AnimUp>
 					<Box className="flex justify-center mt-10 p-8">
 						<Image

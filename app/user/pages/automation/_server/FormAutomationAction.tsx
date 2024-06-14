@@ -39,7 +39,7 @@ export const getPAutomation = async () => {
 export const getPAutomationWorkingField = async () => {
 	await dbConnect();
 	const res = await PAutomation.find({}, { workingFields: 1 });
-	return JSON.parse(JSON.stringify(res[0].workingFields));
+	return res.length ? JSON.parse(JSON.stringify(res[0].workingFields)) : [];
 };
 
 export const getPAutomationDataById = async (id: string) => {

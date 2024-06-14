@@ -1,6 +1,7 @@
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
+import { IProduct } from "@app/(main)/products/page";
 import { getPElectricWorkingField } from "@app/user/pages/electricDesign/_server/FormElectricDesignAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Button, Container, Typography } from "@mui/material";
@@ -13,34 +14,89 @@ import { IWorkingField } from "../automation/page";
 
 const page = async () => {
 	const workingField: IWorkingField[] = await getPElectricWorkingField();
-  const itemData : IProduct[] = [
-    {  _id: '1', company: '', title: 'Cable Ladder and Conduit Installation', path: '/asset/img/service/design/imgLink_1.png',},
-    {  _id: '1', company: '', title: 'MCC Panel Installation', path: '/asset/img/service/design/imgLink_2.png',},
-    {  _id: '1', company: '', title: 'Metallic Conduit Installation', path: '/asset/img/service/design/imgLink_3.png',},
-    {  _id: '1', company: '', title: 'Lighting Installation', path: '/asset/img/service/design/imgLink_4.png',},
-    {  _id: '1', company: '', title: 'Metallic Conduit Installation for Cable Wiring to Equipment', path: '/asset/img/service/design/imgLink_5.png',},
-    {  _id: '1', company: '', title: 'Terminal Panel Installation', path: '/asset/img/service/design/imgLink_6.png',},
-    {  _id: '1', company: '', title: 'Transformer Station Installation', path: '/asset/img/service/design/imgLink_7.png',},
-    {  _id: '1', company: '', title: 'Vertical Cable Arrangement', path: '/asset/img/service/design/imgLink_8.png',},
-  ];
+	const itemData: IProduct[] = [
+		{
+			_id: "1",
+			company: "",
+			title: "Cable Ladder and Conduit Installation",
+			path: "/asset/img/service/design/imgLink_1.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "MCC Panel Installation",
+			path: "/asset/img/service/design/imgLink_2.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Metallic Conduit Installation",
+			path: "/asset/img/service/design/imgLink_3.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Lighting Installation",
+			path: "/asset/img/service/design/imgLink_4.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Metallic Conduit Installation for Cable Wiring to Equipment",
+			path: "/asset/img/service/design/imgLink_5.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Terminal Panel Installation",
+			path: "/asset/img/service/design/imgLink_6.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Transformer Station Installation",
+			path: "/asset/img/service/design/imgLink_7.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "Vertical Cable Arrangement",
+			path: "/asset/img/service/design/imgLink_8.png",
+		},
+	];
 
-  const itemData1:IProduct[] = [
-    {  _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
-    {  _id: '1', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
-    {  _id: '1', company: '', title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
-    {  _id: '1', company: '', title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
-    {  _id: '1', company: '', title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
-    {  _id: '1', company: '', title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
-  ];
-
-
-	const itemData1 = [
-		{ title: "AUTOMATION DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_1.png" },
-		{ title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
-		{ title: "HVAC DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_3.jpg" },
-		{ title: "ELV DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_4.jpg" },
-		{ title: "ELECTRICAL SERVICE", path: "/asset/img/home/carousel1/carousel_5.png" },
-		{ title: "ELECTRICAL DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_6.jpg" },
+	const itemData1: IProduct[] = [
+		{
+			_id: "1",
+			company: "",
+			title: "AUTOMATION DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_1.png",
+		},
+		{ _id: "1", company: "", title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
+		{
+			_id: "1",
+			company: "",
+			title: "HVAC DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_3.jpg",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "ELV DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_4.jpg",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "ELECTRICAL SERVICE",
+			path: "/asset/img/home/carousel1/carousel_5.png",
+		},
+		{
+			_id: "1",
+			company: "",
+			title: "ELECTRICAL DESIGN AND INSTALLATION",
+			path: "/asset/img/home/carousel1/carousel_6.jpg",
+		},
 	];
 
 	const AnimUp = ({ children }: { children: ReactNode }) => {
@@ -95,17 +151,22 @@ const page = async () => {
 				</AnimUp>
 			</Box>
 			<Container>
-				<AnimUp>
-					<Box
-						className="mt-10 p-8"
-						sx={{ backgroundImage: `url('/asset/img/about/bg_1.png')`, backgroundSize: "cover" }}
-					>
-						<Typography variant="h5" className="font-bold trilong italic mb-4">
-							Working Fields
-						</Typography>
-						<RenderWorkingField workingField={workingField} />
-					</Box>
-				</AnimUp>
+				{!!workingField.length && (
+					<AnimUp>
+						<Box
+							className="mt-10 p-8"
+							sx={{
+								backgroundImage: `url('/asset/img/about/bg_1.png')`,
+								backgroundSize: "cover",
+							}}
+						>
+							<Typography variant="h5" className="font-bold trilong italic mb-4">
+								Working Fields
+							</Typography>
+							<RenderWorkingField workingField={workingField} />
+						</Box>
+					</AnimUp>
+				)}
 				<AnimUp>
 					<Box className="mt-10 p-8">
 						<Grid container spacing={5}>

@@ -32,7 +32,7 @@ export const getPHvac = async () => {
 export const getPHvacWorkingField = async () => {
 	await dbConnect();
 	const res = await PHvac.find({}, { workingFields: 1 });
-	return JSON.parse(JSON.stringify(res[0].workingFields));
+	return res.length ? JSON.parse(JSON.stringify(res[0].workingFields)) : [];
 };
 
 export const getPHvacDataById = async (id: string) => {

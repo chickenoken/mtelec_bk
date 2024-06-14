@@ -33,7 +33,7 @@ export const getPSolar = async () => {
 export const getPSolarWorkingField = async () => {
 	await dbConnect();
 	const res = await PSolar.find({}, { workingFields: 1 });
-	return JSON.parse(JSON.stringify(res[0].workingFields));
+	return res.length ? JSON.parse(JSON.stringify(res[0].workingFields)) : [];
 };
 
 export const getPSolarDataById = async (id: string) => {

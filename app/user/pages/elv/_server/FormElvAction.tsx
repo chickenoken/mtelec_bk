@@ -28,7 +28,7 @@ export const getPElv = async () => {
 export const getPElvWorkingField = async () => {
 	await dbConnect();
 	const res = await PElv.find({}, { workingFields: 1 });
-	return JSON.parse(JSON.stringify(res[0].workingFields));
+	return res.length ? JSON.parse(JSON.stringify(res[0].workingFields)) : [];
 };
 
 export const getPElvDataById = async (id: string) => {
