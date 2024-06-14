@@ -16,26 +16,26 @@ export interface IWorkingField {
 
 const page = async () => {
 	const workingField: IWorkingField[] = await getPAutomationWorkingField();
-	const itemData = [
-		{ title: "RIO Panel Installation", path: "/asset/img/service/automation/imgLink_1.png" },
-		{ title: "MCC Panel Installation", path: "/asset/img/service/automation/imgLink_2.png" },
-		{ title: "PLC Panel Installation", path: "/asset/img/service/automation/imgLink_3.png" },
-		{ title: "PLC Panel Installation", path: "/asset/img/service/automation/imgLink_4.png" },
-	];
+  const itemData:IProduct[] = [
+    { _id: '1', company: '', title: 'RIO Panel Installation', path: '/asset/img/service/automation/imgLink_1.png',},
+    { _id: '2', company: '', title: 'MCC Panel Installation', path: '/asset/img/service/automation/imgLink_2.png',},
+    { _id: '3', company: '', title: 'PLC Panel Installation', path: '/asset/img/service/automation/imgLink_3.png',},
+    { _id: '4', company: '', title: 'PLC Panel Installation', path: '/asset/img/service/automation/imgLink_4.png',},
+  ];
 
-	const itemData2 = [
-		{ title: "RIO Panel Installation", path: "/asset/img/service/automation/imgLink_5.png" },
-		{ title: "MCC Panel Installation", path: "/asset/img/service/automation/imgLink_6.png" },
-	];
+  const itemData2:IProduct[] = [
+    { _id: '1', company: '', title: 'RIO Panel Installation', path: '/asset/img/service/automation/imgLink_5.png',},
+    { _id: '2', company: '', title: 'MCC Panel Installation', path: '/asset/img/service/automation/imgLink_6.png',},
+  ];
 
-	const itemData1 = [
-		{ title: "AUTOMATION DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_1.png" },
-		{ title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
-		{ title: "HVAC DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_3.jpg" },
-		{ title: "ELV DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_4.jpg" },
-		{ title: "ELECTRICAL SERVICE", path: "/asset/img/home/carousel1/carousel_5.png" },
-		{ title: "ELECTRICAL DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_6.jpg" },
-	];
+  const itemData1: IProduct[] = [
+    { _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
+    { _id: '2', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
+    { _id: '3', company: '', title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
+    { _id: '4', company: '', title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
+    { _id: '5', company: '', title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
+    { _id: '6', company: '', title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
+  ];
 
 	const AnimUp = ({ children }: { children: ReactNode }) => {
 		return (

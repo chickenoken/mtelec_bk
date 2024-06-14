@@ -56,7 +56,7 @@ const FormCompany = ({ id }: FormCategoriesProps) => {
 
 			const re = await updateCompany({
 				id: id as string,
-				image,
+				path: image,
 			});
 
 			if (re.status === 200) {
@@ -71,10 +71,10 @@ const FormCompany = ({ id }: FormCategoriesProps) => {
 		if (id) {
 			let res = await getCompanyById(id);
 			if (res) {
-				setCurrentImg(res.image);
-				setValue("image", res.image);
+				setCurrentImg(res.path);
+				setValue("image", res.path);
 				setValue("_id", id);
-				setImageSrc(res.image);
+				setImageSrc(res.path);
 			}
 		}
 	};
@@ -103,11 +103,7 @@ const FormCompany = ({ id }: FormCategoriesProps) => {
 				</Box>
 				<Box className="w-1/2 mb-4">
 					{/* @ts-ignore */}
-					{errors.cate_name && (
-						<Typography variant="caption" color={"red"}>
-							{errors.cate_name.message}
-						</Typography>
-					)}
+					{errors.cate_name && (<Typography variant="caption" color={"red"}>{errors.cate_name.message}</Typography>)}
 				</Box>
 				<Box className="w-40 mb-4">
 					<Typography variant="h6" gutterBottom>

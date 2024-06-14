@@ -32,9 +32,9 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 	} = useForm({ resolver: zodResolver(schema) });
 	const fileImg = useRef<HTMLInputElement>(null);
 	const [imageSrc, setImageSrc] = useState<string | null>(null);
-	const [currentData, setCurrentData] = useState<{ title: string; image: string }>({
+	const [currentData, setCurrentData] = useState<{ title: string; path: string }>({
 		title: "",
-		image: "",
+		path: "",
 	});
 
 	const handleUploadClick = (event: any) => {
@@ -45,7 +45,7 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 		const file = event.target.files[0];
 		setImageSrc(URL.createObjectURL(file));
 		const b64File = await CommonService.convertToBase64(file);
-		setValue("image", b64File);
+		setValue("path", b64File);
 	};
 
 	const handleUpdate = async () => {
@@ -58,7 +58,7 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 			const res = await updateProduct({
 				id: id as string,
 				title: param.title !== currentData.title ? param.title : undefined,
-				image: param.image !== currentData.image ? param.image : undefined,
+				path: param.path !== currentData.path ? param.path : undefined,
 			});
 			if (res.status === 200) {
 				DialogService.success("Your data has been saved", () => {
@@ -78,9 +78,9 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 				setValue("_id", id);
 				setCurrentData({
 					title: res.title,
-					image: res.image,
+					path: res.path,
 				});
-				setImageSrc(res.image);
+				setImageSrc(res.path);
 			}
 		}
 	};
@@ -120,10 +120,7 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 						{...register("title")}
 					/>
 					{/* @ts-ignore */}
-					{errors.title && (
-						<Typography variant="caption" color={"red"}>
-							{errors.title.message}
-						</Typography>
+					{errors.title && (<Typography variant="caption" color={"red"}>{errors.title.message}</Typography>
 					)}
 				</Box>
 				<Box className="w-40 mb-4">
@@ -132,7 +129,7 @@ const FormProduct = ({ id }: FormCategoriesProps) => {
 					</Typography>
 					<input
 						type="file"
-						{...register("image")}
+						{...register("path")}
 						ref={fileImg}
 						style={{ display: "none" }}
 						onChange={handleFileChange}

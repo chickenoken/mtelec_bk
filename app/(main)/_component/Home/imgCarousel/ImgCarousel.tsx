@@ -111,7 +111,7 @@ const ImgCarousel = ({ mode }: Props) => {
 							>
 								<Image
 									className="h-96"
-									src={item.image}
+									src={item.path}
 									alt={item.title}
 									width={500}
 									height={200}

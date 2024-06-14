@@ -13,20 +13,26 @@ import { IWorkingField } from "../automation/page";
 
 const page = async () => {
 	const workingField: IWorkingField[] = await getPElectricWorkingField();
+  const itemData : IProduct[] = [
+    {  _id: '1', company: '', title: 'Cable Ladder and Conduit Installation', path: '/asset/img/service/design/imgLink_1.png',},
+    {  _id: '1', company: '', title: 'MCC Panel Installation', path: '/asset/img/service/design/imgLink_2.png',},
+    {  _id: '1', company: '', title: 'Metallic Conduit Installation', path: '/asset/img/service/design/imgLink_3.png',},
+    {  _id: '1', company: '', title: 'Lighting Installation', path: '/asset/img/service/design/imgLink_4.png',},
+    {  _id: '1', company: '', title: 'Metallic Conduit Installation for Cable Wiring to Equipment', path: '/asset/img/service/design/imgLink_5.png',},
+    {  _id: '1', company: '', title: 'Terminal Panel Installation', path: '/asset/img/service/design/imgLink_6.png',},
+    {  _id: '1', company: '', title: 'Transformer Station Installation', path: '/asset/img/service/design/imgLink_7.png',},
+    {  _id: '1', company: '', title: 'Vertical Cable Arrangement', path: '/asset/img/service/design/imgLink_8.png',},
+  ];
 
-	const itemData = [
-		{ title: "Cable Ladder and Conduit Installation", path: "/asset/img/service/design/imgLink_1.png" },
-		{ title: "MCC Panel Installation", path: "/asset/img/service/design/imgLink_2.png" },
-		{ title: "Metallic Conduit Installation", path: "/asset/img/service/design/imgLink_3.png" },
-		{ title: "Lighting Installation", path: "/asset/img/service/design/imgLink_4.png" },
-		{
-			title: "Metallic Conduit Installation for Cable Wiring to Equipment",
-			path: "/asset/img/service/design/imgLink_5.png",
-		},
-		{ title: "Terminal Panel Installation", path: "/asset/img/service/design/imgLink_6.png" },
-		{ title: "Transformer Station Installation", path: "/asset/img/service/design/imgLink_7.png" },
-		{ title: "Vertical Cable Arrangement", path: "/asset/img/service/design/imgLink_8.png" },
-	];
+  const itemData1:IProduct[] = [
+    {  _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
+    {  _id: '1', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
+    {  _id: '1', company: '', title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
+    {  _id: '1', company: '', title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
+    {  _id: '1', company: '', title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
+    {  _id: '1', company: '', title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
+  ];
+
 
 	const itemData1 = [
 		{ title: "AUTOMATION DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_1.png" },

@@ -12,30 +12,23 @@ import { IWorkingField } from "../automation/page";
 
 const page = async () => {
 	const workingField: IWorkingField[] = await getPSolarWorkingField();
+  const itemData: IProduct[] = [
+    { _id: '1', company: '', title: 'AC and PV Cable Installation inside Cable Trays', path: '/asset/img/service/solar/imgLink_1.png',},
+    { _id: '1', company: '', title: 'AC and PV Cable Installation inside Cable Trays', path: '/asset/img/service/solar/imgLink_2.png',},
+    { _id: '1', company: '', title: 'Cable Raceway Installation', path: '/asset/img/service/solar/imgLink_3.png',},
+    { _id: '1', company: '', title: 'Cable Raceway Installation', path: '/asset/img/service/solar/imgLink_4.png',},
+    { _id: '1', company: '', title: 'Inverter Installation', path: '/asset/img/service/solar/imgLink_5.png',},
+    { _id: '1', company: '', title: 'MDB and Load Center Installation', path: '/asset/img/service/solar/imgLink_6.png',},
+  ];
 
-	const itemData = [
-		{
-			title: "AC and PV Cable Installation inside Cable Trays",
-			path: "/asset/img/service/solar/imgLink_1.png",
-		},
-		{
-			title: "AC and PV Cable Installation inside Cable Trays",
-			path: "/asset/img/service/solar/imgLink_2.png",
-		},
-		{ title: "Cable Raceway Installation", path: "/asset/img/service/solar/imgLink_3.png" },
-		{ title: "Cable Raceway Installation", path: "/asset/img/service/solar/imgLink_4.png" },
-		{ title: "Inverter Installation", path: "/asset/img/service/solar/imgLink_5.png" },
-		{ title: "MDB and Load Center Installation", path: "/asset/img/service/solar/imgLink_6.png" },
-	];
-
-	const itemData1 = [
-		{ title: "AUTOMATION DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_1.png" },
-		{ title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
-		{ title: "HVAC DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_3.jpg" },
-		{ title: "ELV DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_4.jpg" },
-		{ title: "ELECTRICAL SERVICE", path: "/asset/img/home/carousel1/carousel_5.png" },
-		{ title: "ELECTRICAL DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_6.jpg" },
-	];
+  const itemData1: IProduct[] = [
+    { _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
+    { _id: '1', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},
+    { _id: '1', company: '', title: 'HVAC DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_3.jpg',},
+    { _id: '1', company: '', title: 'ELV DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_4.jpg',},
+    { _id: '1', company: '', title: 'ELECTRICAL SERVICE', path: '/asset/img/home/carousel1/carousel_5.png',},
+    { _id: '1', company: '', title: 'ELECTRICAL DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_6.jpg',},
+  ];
 
 	const AnimUp = ({ children }: { children: ReactNode }) => {
 		return (

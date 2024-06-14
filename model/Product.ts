@@ -6,7 +6,7 @@ const ProductsSchema: MongooseSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		image: {
+		path: {
 			type: String,
 			required: true,
 		},

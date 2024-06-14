@@ -11,24 +11,25 @@ import ImageChange from "./_component/Home/ImgChange/ImageChange";
 import ContactUs from "./_component/Home/contactUs/ContactUs";
 import ImgCarousel from "./_component/Home/imgCarousel/ImgCarousel";
 import LogoCarousel from "./_component/Home/logoCarousel/LogoCarousel";
+import { IProduct } from "./products/page";
 
 export default function Home() {
-	const itemData1 = [
-		{ title: "AUTOMATION DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_1.png" },
-		{ title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
-		{ title: "HVAC DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_3.jpg" },
-		{ title: "ELV DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_4.jpg" },
-		{ title: "ELECTRICAL SERVICE", path: "/asset/img/home/carousel1/carousel_5.png" },
-		{ title: "ELECTRICAL DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_6.jpg" },
+	const itemData1: IProduct[] = [
+		{_id: '1', company: '', title: "AUTOMATION DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_1.png" },
+		{_id: '2', company: '', title: "SOLAR SYSTEM", path: "/asset/img/home/carousel1/carousel_2.jpg" },
+		{_id: '3', company: '', title: "HVAC DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_3.jpg" },
+		{_id: '4', company: '', title: "ELV DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_4.jpg" },
+		{_id: '5', company: '', title: "ELECTRICAL SERVICE", path: "/asset/img/home/carousel1/carousel_5.png" },
+		{_id: '6', company: '', title: "ELECTRICAL DESIGN AND INSTALLATION", path: "/asset/img/home/carousel1/carousel_6.jpg" },
 	];
 
-	const itemData2 = [
-		{ title: "BAO LONG FACTORY", path: "/asset/img/home/carousel2/carousel_1.jpg" },
-		{ title: "FRAMAS NHON TRACH FACTORY", path: "/asset/img/home/carousel2/carousel_2.jpg" },
-		{ title: "CARGILL FACTORY", path: "/asset/img/home/carousel2/carousel_3.jpg" },
-		{ title: "ADM HOA MAC FACTORY", path: "/asset/img/home/carousel2/carousel_4.jpg" },
-		{ title: "CP BANGLADESH BOGRA FACTORY", path: "/asset/img/home/carousel2/carousel_5.jpg" },
-		{ title: "CP HAI DUONG FACTORY", path: "/asset/img/home/carousel2/carousel_6.jpg" },
+	const itemData2: IProduct[]  = [
+		{ _id: '1', company: '', title: "BAO LONG FACTORY", path: "/asset/img/home/carousel2/carousel_1.jpg" },
+		{ _id: '2', company: '', title: "FRAMAS NHON TRACH FACTORY", path: "/asset/img/home/carousel2/carousel_2.jpg" },
+		{ _id: '3', company: '', title: "CARGILL FACTORY", path: "/asset/img/home/carousel2/carousel_3.jpg" },
+		{ _id: '4', company: '', title: "ADM HOA MAC FACTORY", path: "/asset/img/home/carousel2/carousel_4.jpg" },
+		{ _id: '5', company: '', title: "CP BANGLADESH BOGRA FACTORY", path: "/asset/img/home/carousel2/carousel_5.jpg" },
+		{ _id: '6', company: '', title: "CP HAI DUONG FACTORY", path: "/asset/img/home/carousel2/carousel_6.jpg" },
 	];
 
 	const FadeInWhenVisible = ({ children }: { children: ReactNode }) => {

@@ -65,7 +65,7 @@ const TableProduct = () => {
 											{row._id}
 										</TableCell>
 										<TableCell component="th" scope="row">
-											<Image src={row.image} alt={row.title} width={100} height={100} />
+											<Image src={row.path} alt={row.title} width={100} height={100} />
 										</TableCell>
 										<TableCell width="380px">{row.title}</TableCell>
 										<TableCell>

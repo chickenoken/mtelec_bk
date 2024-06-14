@@ -307,6 +307,16 @@ const LayoutUser = () => {
 								</ListItemButton>
 							</List>
 						</Link>
+						<Link href="/user/pages/electricService">
+							<List component="div" disablePadding>
+								<ListItemButton sx={{ pl: 4 }}>
+									<ListItemIcon>
+										<FaUser />
+									</ListItemIcon>
+									<ListItemText primary="elecService" />
+								</ListItemButton>
+							</List>
+						</Link>
 					</Collapse>
 
 					<ListItemButton onClick={() => setReUser(!reUser)}>

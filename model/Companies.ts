@@ -2,7 +2,7 @@ import mongoose, { Schema as MongooseSchema } from "mongoose";
 
 const CompaniesSchema: MongooseSchema = new mongoose.Schema(
 	{
-		image: {
+		path: {
 			type: String,
 			required: true,
 		},
