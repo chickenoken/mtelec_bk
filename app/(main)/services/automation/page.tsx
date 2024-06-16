@@ -1,63 +1,53 @@
+"use client"
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
 import { IProduct } from "@app/(main)/products/page";
-import { getPAutomationWorkingField } from "@app/user/pages/automation/_server/FormAutomationAction";
+import { getPAutomation, getPAutomationWorkingField } from "@app/user/pages/automation/_server/FormAutomationAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, ImageListItem, ImageListItemBar, Typography } from "@mui/material";
 import Image from "next/image";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdChevronRight } from "react-icons/md";
 import ImageLinks from "../_component/ImageLinks";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 export interface IWorkingField {
 	title: string;
 	descriptions: { sub: string; column: number }[];
 }
 
-const page = async () => {
-	const workingField: IWorkingField[] = await getPAutomationWorkingField();
-	const itemData: IProduct[] = [
-		{
-			_id: "1",
-			company: "",
-			title: "RIO Panel Installation",
-			path: "/asset/img/service/automation/imgLink_1.png",
-		},
-		{
-			_id: "2",
-			company: "",
-			title: "MCC Panel Installation",
-			path: "/asset/img/service/automation/imgLink_2.png",
-		},
-		{
-			_id: "3",
-			company: "",
-			title: "PLC Panel Installation",
-			path: "/asset/img/service/automation/imgLink_3.png",
-		},
-		{
-			_id: "4",
-			company: "",
-			title: "PLC Panel Installation",
-			path: "/asset/img/service/automation/imgLink_4.png",
-		},
-	];
+interface IAutomation {
+	image1: string;
+	image2: string;
+	name3: string;
+	image3: string;
+	name4: string;
+	image4: string;
+	name5: string;
+	image5: string;
+	name6: string;
+	image6: string;
+	name7: string;
+	image7: string;
+	name8: string;
+	image8: string;
+}
 
-	const itemData2: IProduct[] = [
-		{
-			_id: "1",
-			company: "",
-			title: "RIO Panel Installation",
-			path: "/asset/img/service/automation/imgLink_5.png",
-		},
-		{
-			_id: "2",
-			company: "",
-			title: "MCC Panel Installation",
-			path: "/asset/img/service/automation/imgLink_6.png",
-		},
-	];
+const page = () => {
+	const [workingField, setWorkingField] = React.useState<IWorkingField[]>([]);
+	const [data, setData] = React.useState<IAutomation>();
+
+  const getData = async () => {
+    let rs = await getPAutomationWorkingField();
+    setWorkingField(rs);
+    rs = await getPAutomation();
+		setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
 	const itemData1: IProduct[] = [
 		{
@@ -167,46 +157,47 @@ const page = async () => {
 						</Box>
 					</AnimUp>
 				)}
-
-				<AnimUp>
-					<Box display="flex" justifyContent="center" className="mt-10 p-8">
-						<Image
-							className="mb-4"
-							src="/asset/img/service/automation/img_1.png"
-							alt="alt"
-							width={15000}
-							height={15000}
-						/>
-					</Box>
-					<Box display="flex" justifyContent="center" className="mt-10 p-8">
-						<Image
-							className="mb-4"
-							src="/asset/img/service/automation/img_1.png"
-							alt="alt"
-							width={1000}
-							height={1000}
-						/>
-					</Box>
-				</AnimUp>
-				<AnimUp>
-					<Box className="mt-10">
-						<ImageLinks itemData={itemData} grid={3} />
-					</Box>
-				</AnimUp>
-				<AnimUp>
-					<Box className="my-2">
-						<ImageLinks itemData={itemData2} grid={6} />
-					</Box>
-					<Box>
-						<Button
-							className="h-16 px-8 py-5 mte-grey text-black text-xl font-bold mt-2"
-							fullWidth
-							variant="text"
-						>
-							Other Services
-						</Button>
-					</Box>
-				</AnimUp>
+				{data && ( <>
+					<AnimUp>
+						<Box display="flex" justifyContent="center" className="mt-10 p-8">
+							<Image
+								className="mb-4"
+								src={data?.image1 ?? ""}
+								alt="alt"
+								width={15000}
+								height={15000}
+							/>
+						</Box>
+						<Box display="flex" justifyContent="center" className="mt-10 p-8">
+							<Image
+								className="mb-4"
+								src={data?.image2 ?? ""}
+								alt="alt"
+								width={1000}
+								height={1000}
+							/>
+						</Box>
+					</AnimUp>
+					<AnimUp>
+						<Box className="mt-10">
+							<ImageLinks data={data} grid={3} start={3} num={4}/>
+						</Box>
+					</AnimUp>
+					<AnimUp>
+						<Box className="my-2">
+							<ImageLinks data={data} grid={6} start={7} num={2} />
+						</Box>
+						<Box>
+							<Button
+								className="h-16 px-8 py-5 mte-grey text-black text-xl font-bold mt-2"
+								fullWidth
+								variant="text"
+							>
+								Other Services
+							</Button>
+						</Box>
+					</AnimUp>
+				</>)}
 
 				{/* PROJECTS */}
 				<AnimUp>

@@ -3,17 +3,26 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import Image from 'next/image'
 import React from 'react'
 
-interface Mode {
-  title: string;
-  path: string;
-}
-
 interface Props {
-  itemData: Mode[];
+  data: any;
   grid: number;
+  start: number;
+  num: number;
 }
 
-const ImageLinks = ({ itemData, grid }: Props) => {
+const ImageLinks = ({ data, grid, start, num }: Props) => {
+  if (!data || Object.keys(data).length === 0) {
+    return <></>;
+  }
+
+  const itemData = Object.keys(data)
+    .filter(key => key.startsWith('image'))
+    .slice(start - 1, start + num - 1)
+    .map(key => ({
+      title: data[`name${key.slice(5)}`] || `Image ${key.slice(5)}`,
+      path: data[key] || '',
+    }));
+
   return (
     <Box>
       <Grid container spacing={5}>

@@ -41,7 +41,7 @@ export default function RenderWorkingField({ workingField }: IProps) {
 														>
 															{line.endsWith(":") ? "" : <BsDot />}
 														</ListItemIcon>
-														<ListItemText
+														<ListItemText 
 															primary={
 																line.endsWith(":") ? line.slice(0, -1) : line
 															}
@@ -49,7 +49,9 @@ export default function RenderWorkingField({ workingField }: IProps) {
 																fontWeight: line.endsWith(":")
 																	? "bold"
 																	: "normal",
+																	className: line.endsWith(":") ? "" : 'text-sm',
 															}}
+															
 														/>
 													</ListItem>
 												))}

@@ -1,8 +1,9 @@
+"use client"
 import { getCompanyWithProduct } from "@app/user/product/_server/CompanyAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdChevronRight } from "react-icons/md";
 import { default as ImgCarousel } from "../_component/Home/imgCarousel/ImgCarousel";
 
@@ -20,7 +21,18 @@ interface ICompanyWithProduct {
 }
 
 const pages = async () => {
-	const res: ICompanyWithProduct[] = await getCompanyWithProduct();
+	const [res, setData] = React.useState<ICompanyWithProduct[]>();
+
+	const getData = async () => {
+		let rs = await getCompanyWithProduct();
+		setData(rs);
+	}
+
+	useEffect(() => {
+		getData();
+	}, []);
+
+
 	const AnimUp = ({ children }: { children: ReactNode }) => {
 		return (
 			<MotionDiv

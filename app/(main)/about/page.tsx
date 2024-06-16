@@ -118,7 +118,7 @@ const page = () => {
           </Grid>
           <Grid md={6} >
             <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
-              <Image key={1} src={data?.image1 ?? ""} alt="alt" width={500} height={450} style={{ zIndex: 1, boxShadow: '2rem -2rem black'}}/>
+              <Image key={1} src={data?.image1 ?? ""} alt="alt" width={500} height={450} />
             </Box>
           </Grid>
         </Grid>
@@ -269,7 +269,7 @@ const page = () => {
           </Grid>
           <Grid md={6}>
             <Box display="flex" justifyContent="center" alignItems="center" style={{ height: '100%' }}>
-              <Image key={1} src={data?.image2 ?? ""} alt="alt" width={500} height={450} style={{ zIndex: 1, boxShadow: '2rem -2rem black'}}/>
+              <Image key={1} src={data?.image2 ?? ""} alt="alt" width={500} height={450} />
             </Box>
           </Grid>
         </Grid>

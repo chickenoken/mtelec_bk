@@ -1,69 +1,58 @@
+"use client"
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
 import { IProduct } from "@app/(main)/products/page";
-import { getPElectricWorkingField } from "@app/user/pages/electricDesign/_server/FormElectricDesignAction";
+import { getPElectricDesign, getPElectricWorkingField } from "@app/user/pages/electricDesign/_server/FormElectricDesignAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Image from "next/image";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdChevronRight } from "react-icons/md";
 import ImageLinks from "../_component/ImageLinks";
 import { IWorkingField } from "../automation/page";
 
-const page = async () => {
-	const workingField: IWorkingField[] = await getPElectricWorkingField();
-	const itemData: IProduct[] = [
-		{
-			_id: "1",
-			company: "",
-			title: "Cable Ladder and Conduit Installation",
-			path: "/asset/img/service/design/imgLink_1.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "MCC Panel Installation",
-			path: "/asset/img/service/design/imgLink_2.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "Metallic Conduit Installation",
-			path: "/asset/img/service/design/imgLink_3.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "Lighting Installation",
-			path: "/asset/img/service/design/imgLink_4.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "Metallic Conduit Installation for Cable Wiring to Equipment",
-			path: "/asset/img/service/design/imgLink_5.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "Terminal Panel Installation",
-			path: "/asset/img/service/design/imgLink_6.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "Transformer Station Installation",
-			path: "/asset/img/service/design/imgLink_7.png",
-		},
-		{
-			_id: "1",
-			company: "",
-			title: "Vertical Cable Arrangement",
-			path: "/asset/img/service/design/imgLink_8.png",
-		},
-	];
+interface IElectricDesign {
+	name: string;
+	name1: string;
+	image1: string;
+	name2: string;
+	image2: string;
+	name3: string;
+	image3: string;
+	name4: string;
+	image4: string;
+	name5: string;
+	image5: string;
+	name6: string;
+	image6: string;
+	name7: string;
+	image7: string;
+	name8: string;
+	image8: string;
+	name9: string;
+	image9: string;
+	name10: string;
+	image10: string;
+	name11: string;
+	image11: string;
+}
+
+const page = () => {
+  const [workingField, setWorkingField] = React.useState<IWorkingField[]>([]);
+	const [data, setData] = React.useState<IElectricDesign>();
+
+  const getData = async () => {
+    let rs = await getPElectricWorkingField();
+    setWorkingField(rs);
+		rs = await getPElectricDesign();
+		setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
 	const itemData1: IProduct[] = [
 		{
@@ -173,35 +162,35 @@ const page = async () => {
 							<Grid md={4}>
 								<Image
 									className="mb-4"
-									src="/asset/img/service/design/img_1.png"
+									src={data?.image1 ?? ""}
 									alt="alt"
 									width={500}
 									height={500}
 								/>
-								<Typography className="text-center font-bold mt-2">MDB Panel</Typography>
+								<Typography className="text-center font-bold mt-2">{data?.name1}</Typography>
 							</Grid>
 							<Grid md={4}>
 								<Image
 									className="mb-4"
-									src="/asset/img/service/design/img_2.png"
+									src={data?.image2 ?? ""}
 									alt="alt"
 									width={500}
 									height={500}
 								/>
 								<Typography className="text-center font-bold mt-2">
-									Blockset Panel Form 3
+								{data?.name2}
 								</Typography>
 							</Grid>
 							<Grid md={4}>
 								<Image
 									className="mb-4"
-									src="/asset/img/service/design/img_3.png"
+									src={data?.image3 ?? ""}
 									alt="alt"
 									width={500}
 									height={500}
 								/>
 								<Typography className="text-center font-bold mt-2">
-									MCC Panel Form 1
+									{data?.name3}
 								</Typography>
 							</Grid>
 						</Grid>
@@ -210,7 +199,7 @@ const page = async () => {
 
 				<Box className="my-10">
 					<AnimUp>
-						<ImageLinks itemData={itemData} grid={6} />
+						<ImageLinks data={data} grid={6} start={4} num={8}/>
 					</AnimUp>
 				</Box>
 				<Box>

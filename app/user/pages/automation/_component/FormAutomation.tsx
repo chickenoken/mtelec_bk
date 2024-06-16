@@ -218,11 +218,7 @@ const FormAutomation = () => {
 						{...register("name3")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name4 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name4.message}
-						</Typography>
-					)}
+					{errors.name4 && (<Typography variant="caption" color={"red"}>{errors.name4.message}</Typography>)}
 				</Grid>
 				<Grid md={3}>
 					<Box className="w-40 mb-4">
@@ -259,11 +255,7 @@ const FormAutomation = () => {
 						{...register("name4")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name4 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name4.message}
-						</Typography>
-					)}
+					{errors.name4 && (<Typography variant="caption" color={"red"}>{errors.name4.message}</Typography>)}
 				</Grid>
 				<Grid md={3}>
 					<Box className="w-40 mb-4">
@@ -300,11 +292,7 @@ const FormAutomation = () => {
 						{...register("name5")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name5 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name5.message}
-						</Typography>
-					)}
+					{errors.name5 && (<Typography variant="caption" color={"red"}>{errors.name5.message}</Typography>)}
 				</Grid>
 				<Grid md={3}>
 					<Box className="w-40 mb-4">
@@ -341,11 +329,7 @@ const FormAutomation = () => {
 						{...register("name6")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name6 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name6.message}
-						</Typography>
-					)}
+					{errors.name6 && (<Typography variant="caption" color={"red"}>{errors.name6.message}</Typography>)}
 				</Grid>
 			</Grid>
 
@@ -385,11 +369,7 @@ const FormAutomation = () => {
 						{...register("name7")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name7 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name7.message}
-						</Typography>
-					)}
+					{errors.name7 && (<Typography variant="caption" color={"red"}>{errors.name7.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -426,11 +406,7 @@ const FormAutomation = () => {
 						{...register("name8")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name8 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name8.message}
-						</Typography>
-					)}
+					{errors.name8 && (<Typography variant="caption" color={"red"}>{errors.name8.message}</Typography>)}
 				</Grid>
 			</Grid>
 		</>

@@ -184,11 +184,7 @@ const FormElectricDesign = () => {
 						{...register("name1")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name1 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name1.message}
-						</Typography>
-					)}
+					{errors.name1 && ( <Typography variant="caption" color={"red"}>{errors.name1.message}</Typography>)}
 				</Grid>
 				<Grid md={4}>
 					<Box className="w-40 mb-4">
@@ -225,11 +221,7 @@ const FormElectricDesign = () => {
 						{...register("name2")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name2 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name2.message}
-						</Typography>
-					)}
+					{errors.name2 && (<Typography variant="caption" color={"red"}>{errors.name2.message}</Typography>)}
 				</Grid>
 				<Grid md={4}>
 					<Box className="w-40 mb-4">
@@ -266,11 +258,7 @@ const FormElectricDesign = () => {
 						{...register("name3")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name3 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name3.message}
-						</Typography>
-					)}
+					{errors.name3 && (<Typography variant="caption" color={"red"}>{errors.name3.message}</Typography>)}
 				</Grid>
 			</Grid>
 
@@ -310,11 +298,7 @@ const FormElectricDesign = () => {
 						{...register("name4")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name4 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name4.message}
-						</Typography>
-					)}
+					{errors.name4 && (<Typography variant="caption" color={"red"}>{errors.name4.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -351,11 +335,7 @@ const FormElectricDesign = () => {
 						{...register("name5")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name5 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name5.message}
-						</Typography>
-					)}
+					{errors.name5 && (<Typography variant="caption" color={"red"}>{errors.name5.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -392,11 +372,7 @@ const FormElectricDesign = () => {
 						{...register("name6")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name6 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name6.message}
-						</Typography>
-					)}
+					{errors.name6 && (<Typography variant="caption" color={"red"}>{errors.name6.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -433,11 +409,7 @@ const FormElectricDesign = () => {
 						{...register("name7")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name7 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name7.message}
-						</Typography>
-					)}
+					{errors.name7 && (<Typography variant="caption" color={"red"}>{errors.name7.message}</Typography>)}
 				</Grid>
 
 				<Grid md={6}>
@@ -475,11 +447,7 @@ const FormElectricDesign = () => {
 						{...register("name8")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name8 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name8.message}
-						</Typography>
-					)}
+					{errors.name8 && (<Typography variant="caption" color={"red"}>{errors.name8.message}</Typography>)}
 				</Grid>
 
 				<Grid md={6}>
@@ -517,11 +485,7 @@ const FormElectricDesign = () => {
 						{...register("name9")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name9 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name9.message}
-						</Typography>
-					)}
+					{errors.name9 && (<Typography variant="caption" color={"red"}>{errors.name9.message}</Typography>)}
 				</Grid>
 
 				<Grid md={6}>
@@ -559,11 +523,7 @@ const FormElectricDesign = () => {
 						{...register("name10")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name10 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name10.message}
-						</Typography>
-					)}
+					{errors.name10 && (<Typography variant="caption" color={"red"}>{errors.name10.message}</Typography>)}
 				</Grid>
 
 				<Grid md={6}>
@@ -601,11 +561,7 @@ const FormElectricDesign = () => {
 						{...register("name11")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name11 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name11.message}
-						</Typography>
-					)}
+					{errors.name11 && (<Typography variant="caption" color={"red"}>{errors.name11.message}</Typography>)}
 				</Grid>
 			</Grid>
 		</>

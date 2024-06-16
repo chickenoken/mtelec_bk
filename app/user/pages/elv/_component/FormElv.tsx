@@ -147,11 +147,7 @@ const FormElv = () => {
 						{...register("name1")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name1 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name1.message}
-						</Typography>
-					)}
+					{errors.name1 && (<Typography variant="caption" color={"red"}>{errors.name1.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -188,11 +184,7 @@ const FormElv = () => {
 						{...register("name2")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name2 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name2.message}
-						</Typography>
-					)}
+					{errors.name2 && (<Typography variant="caption" color={"red"}>{errors.name2.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -229,11 +221,7 @@ const FormElv = () => {
 						{...register("name3")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name3 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name3.message}
-						</Typography>
-					)}
+					{errors.name3 && (<Typography variant="caption" color={"red"}>{errors.name3.message}</Typography>)}
 				</Grid>
 				<Grid md={6}>
 					<Box className="w-40 mb-4">
@@ -270,11 +258,7 @@ const FormElv = () => {
 						{...register("name4")}
 					/>
 					{/* @ts-ignore */}
-					{errors.name4 && (
-						<Typography variant="caption" color={"red"}>
-							{errors.name4.message}
-						</Typography>
-					)}
+					{errors.name4 && (<Typography variant="caption" color={"red"}>{errors.name4.message}</Typography>)}
 				</Grid>
 			</Grid>
 		</>

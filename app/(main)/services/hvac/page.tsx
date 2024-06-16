@@ -1,17 +1,46 @@
+"use client"
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
 import { IProduct } from "@app/(main)/products/page";
-import { getPHvacWorkingField } from "@app/user/pages/hvac/_server/FormHvacAction";
+import { getPHvac, getPHvacWorkingField } from "@app/user/pages/hvac/_server/FormHvacAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Button, Container, Typography } from "@mui/material";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdChevronRight } from "react-icons/md";
 import ImageLinks from "../_component/ImageLinks";
 import { IWorkingField } from "../automation/page";
 
-const page = async () => {
-	const workingField: IWorkingField[] = await getPHvacWorkingField();
+interface IHvac {
+	name1: string;
+	image1: string;
+	name2: string;
+	image2: string;
+	name3: string;
+	image3: string;
+	name4: string;
+	image4: string;
+	name5: string;
+	image5: string;
+	name6: string;
+	image6: string;
+}
+
+const page = () => {
+	const [workingField, setWorkingField] = React.useState<IWorkingField[]>([]);
+	const [data, setData] = React.useState<IHvac>();
+
+  const getData = async () => {
+    let rs = await getPHvacWorkingField();
+    setWorkingField(rs);
+		rs = await getPHvac();
+		setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+	
 
 	const itemData: IProduct[] = [
 		{
@@ -117,7 +146,7 @@ const page = async () => {
 					</Typography>
 					<MdChevronRight size="2rem" className="me-2" color="black" />
 					<Typography variant="overline" className="text-black me-2 text-lg">
-						ELV DESIGN AND INSTALLATION
+						HVAC DESIGN AND INSTALLATION
 					</Typography>
 				</Box>
 			</Box>
@@ -133,7 +162,7 @@ const page = async () => {
 			>
 				<AnimUp>
 					<Typography variant="h4" className="font-bold text-white md:ms-16">
-						ELV DESIGN AND INSTALLATION
+						HVAC DESIGN AND INSTALLATION
 					</Typography>
 				</AnimUp>
 			</Box>
@@ -151,7 +180,6 @@ const page = async () => {
 							<Typography variant="h5" className="font-bold trilong italic mb-4">
 								Working Fields
 							</Typography>
-
 							<RenderWorkingField workingField={workingField} />
 						</Box>
 					</AnimUp>
@@ -159,7 +187,7 @@ const page = async () => {
 
 				<AnimUp>
 					<Box className="mt-10">
-						<ImageLinks itemData={itemData} grid={6} />
+						<ImageLinks data={data} grid={6} start={1} num={6} />
 					</Box>
 					<Box>
 						<Button

@@ -1,5 +1,5 @@
 "use client";
-import { Collapse, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Collapse, ListItemButton, ListItemIcon, ListItemText, Paper } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
@@ -12,16 +12,18 @@ import { useRouter } from "next-nprogress-bar";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BiSolidCategory } from "react-icons/bi";
-import { BsBriefcaseFill, BsFillBuildingsFill } from "react-icons/bs";
-import { FaUser, FaUserTie } from "react-icons/fa";
+import { BsDashLg, BsInfoSquareFill } from "react-icons/bs";
 import { IoLogOutOutline, IoNewspaperSharp } from "react-icons/io5";
-import { MdExpandLess, MdExpandMore } from "react-icons/md";
-import { RiMenuFoldFill, RiPagesFill, RiPagesLine } from "react-icons/ri";
+import { MdDesignServices, MdExpandLess, MdExpandMore } from "react-icons/md";
+import { RiMenuFoldFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 import { logout } from "./LayoutAction";
+import { SiPagekit } from "react-icons/si";
+import { AiFillProject } from "react-icons/ai";
+import { RiProfileFill } from "react-icons/ri";
+import { FaCircleUser } from "react-icons/fa6";
 
-const drawerWidth: number = 200;
+const drawerWidth: number = 250;
 
 interface AppBarProps extends MuiAppBarProps {
 	open?: boolean;
@@ -65,7 +67,7 @@ const Drawer = styled(MuiDrawer, {
 			}),
 			width: theme.spacing(1),
 			[theme.breakpoints.up("sm")]: {
-				width: theme.spacing(7),
+				width: theme.spacing(8),
 			},
 		}),
 	},
@@ -76,9 +78,11 @@ const LayoutUser = () => {
 	const toggleDrawer = () => {
 		setOpen(!open);
 	};
-	const [rePage, setRePage] = React.useState(false);
-	const [reUser, setReUser] = React.useState(false);
+	const [reAbout, setReAbout] = React.useState(false);
 	const [reSer, setReSer] = React.useState(false);
+	const [reProj, setReProj] = React.useState(false);
+	const [reUser, setReUser] = React.useState(false);
+
 	const router = useRouter();
 
 	const handleLogout = async () => {
@@ -143,216 +147,197 @@ const LayoutUser = () => {
 					</IconButton>
 				</Toolbar>
 				<Divider />
-				<List component="nav">
-					<Link href="/user/recruitment">
-						<ListItemButton>
+				<Paper style={{ maxHeight: '90vh', overflow: 'auto', boxShadow: 'none', border: 'none' }}>
+					<List component="nav">
+						<Link href="/user/pages/index">
+							<ListItemButton>
+								<ListItemIcon>
+									<SiPagekit size="1.5em" />
+								</ListItemIcon>
+								<ListItemText primary="Index" />
+							</ListItemButton>
+						</Link>
+						{/* ABOUT */}
+						<ListItemButton onClick={() => setReAbout(!reAbout)}>
 							<ListItemIcon>
-								<BsBriefcaseFill size="1.5em" />
+								<BsInfoSquareFill size="1.5em" />
 							</ListItemIcon>
-							<ListItemText primary="Recruitment" />
+							<ListItemText primary="About" />
+							{reAbout ? <MdExpandLess /> : <MdExpandMore />}
 						</ListItemButton>
-					</Link>
-					<Link href="/user/project">
-						<ListItemButton>
+						<Collapse in={reAbout} timeout="auto" unmountOnExit>
+							<Link href="/user/pages/about">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="About" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/company">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Company Info" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/employee">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Our Team" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/ppe">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="PPE Protection" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/recruitment">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Recruitment" />
+									</ListItemButton>
+								</List>
+							</Link>
+						</Collapse>
+						{/* SERVICE */}
+						<ListItemButton onClick={() => setReSer(!reSer)}>
 							<ListItemIcon>
-								<BsFillBuildingsFill size="1.5em" />
+								<MdDesignServices size="1.5em" />
+							</ListItemIcon>
+							<ListItemText primary="Service" />
+							{reSer ? <MdExpandLess /> : <MdExpandMore />}
+						</ListItemButton>
+						<Collapse in={reSer} timeout="auto" unmountOnExit>
+							<Link href="/user/pages/electricDesign">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Electrical Design" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/automation">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Automation Design" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/solar">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Solar System" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/elv">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="ELV Design" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/hvac">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="HVAC Design" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/pages/electricService">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Electrical Services" />
+									</ListItemButton>
+								</List>
+							</Link>
+						</Collapse>
+						{/* PROJECT */}
+						<ListItemButton onClick={() => setReProj(!reProj)}>
+							<ListItemIcon>
+								<AiFillProject size="1.5em" />
 							</ListItemIcon>
 							<ListItemText primary="Project" />
+							{reProj ? <MdExpandLess /> : <MdExpandMore />}
 						</ListItemButton>
-					</Link>
-					<Link href="/user/product">
-						<ListItemButton>
-							<ListItemIcon>
-								<BsFillBuildingsFill size="1.5em" />
-							</ListItemIcon>
-							<ListItemText primary="Product" />
-						</ListItemButton>
-					</Link>
-					<Link href="/user/categories">
-						<ListItemButton>
-							<ListItemIcon>
-								<BiSolidCategory size="1.5em" />
-							</ListItemIcon>
-							<ListItemText primary="Categories" />
-						</ListItemButton>
-					</Link>
-					<Link href="/user/news">
-						<ListItemButton>
-							<ListItemIcon>
-								<IoNewspaperSharp size="1.5em" />
-							</ListItemIcon>
-							<ListItemText primary="News" />
-						</ListItemButton>
-					</Link>
-					<ListItemButton onClick={() => setRePage(!rePage)}>
-						<ListItemIcon>
-							<RiPagesFill size="1.5em" />
-						</ListItemIcon>
-						<ListItemText primary="Page" />
-						{rePage ? <MdExpandLess /> : <MdExpandMore />}
-					</ListItemButton>
-					<Collapse in={rePage} timeout="auto" unmountOnExit>
-						<Link href="/user/pages/index">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<RiPagesLine />
-									</ListItemIcon>
-									<ListItemText primary="Index" />
-								</ListItemButton>
-							</List>
-						</Link>
-
-						<Link href="/user/pages/about">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUserTie />
-									</ListItemIcon>
-									<ListItemText primary="About" />
-								</ListItemButton>
-							</List>
-						</Link>
-						<Link href="/user/pages/company">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUserTie />
-									</ListItemIcon>
-									<ListItemText primary="Company" />
-								</ListItemButton>
-							</List>
-						</Link>
-						<Link href="/user/employee">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUserTie />
-									</ListItemIcon>
-									<ListItemText primary="Employee" />
-								</ListItemButton>
-							</List>
-						</Link>
-						<Link href="/user/pages/ppe">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUserTie />
-									</ListItemIcon>
-									<ListItemText primary="PPE" />
-								</ListItemButton>
-							</List>
-						</Link>
-					</Collapse>
-
-					<ListItemButton onClick={() => setReUser(!reUser)}>
-						<ListItemIcon>
-							<RiPagesFill size="1.5em" />
-						</ListItemIcon>
-						<ListItemText primary="Service" />
-						{reUser ? <MdExpandLess /> : <MdExpandMore />}
-					</ListItemButton>
-					<Collapse in={reUser} timeout="auto" unmountOnExit>
-						<Link href="/user/pages/electricDesign">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="Electrical" />
-								</ListItemButton>
-							</List>
-						</Link>
-
-						<Link href="/user/pages/automation">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="Automation" />
-								</ListItemButton>
-							</List>
-						</Link>
-
-						<Link href="/user/pages/solar">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="Solar" />
-								</ListItemButton>
-							</List>
-						</Link>
-
-						<Link href="/user/pages/elv">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="ELV" />
-								</ListItemButton>
-							</List>
-						</Link>
-
-						<Link href="/user/pages/hvac">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="HVAC" />
-								</ListItemButton>
-							</List>
-						</Link>
-						<Link href="/user/pages/electricService">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="elecService" />
-								</ListItemButton>
-							</List>
-						</Link>
-					</Collapse>
-
-					<ListItemButton onClick={() => setReUser(!reUser)}>
-						<ListItemIcon>
-							<RiPagesFill size="1.5em" />
-						</ListItemIcon>
-						<ListItemText primary="User" />
-						{reUser ? <MdExpandLess /> : <MdExpandMore />}
-					</ListItemButton>
-					<Collapse in={reUser} timeout="auto" unmountOnExit>
-						<Link href="/user/customer">
-							<List component="div" disablePadding>
-								<ListItemButton sx={{ pl: 4 }}>
-									<ListItemIcon>
-										<FaUser />
-									</ListItemIcon>
-									<ListItemText primary="Customer" />
-								</ListItemButton>
-							</List>
-						</Link>
-						<List component="div" disablePadding>
-							<ListItemButton sx={{ pl: 4 }}>
+						<Collapse in={reProj} timeout="auto" unmountOnExit>
+							<Link href="/user/project">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Project" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<Link href="/user/categories">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Categories" />
+									</ListItemButton>
+								</List>
+							</Link>
+						</Collapse>
+						<Link href="/user/product">
+							<ListItemButton>
 								<ListItemIcon>
-									<FaUserTie />
+									<RiProfileFill size="1.5em" />
 								</ListItemIcon>
-								<ListItemText primary="Applicant" />
+								<ListItemText primary="Product" />
 							</ListItemButton>
-						</List>
-					</Collapse>
-					<ListItemButton onClick={handleLogout}>
-						<ListItemIcon>
-							<IoLogOutOutline size="1.5em" />
-						</ListItemIcon>
-						<ListItemText primary="Log out" />
-					</ListItemButton>
-				</List>
+						</Link>
+						<Link href="/user/news">
+							<ListItemButton>
+								<ListItemIcon>
+									<IoNewspaperSharp size="1.5em" />
+								</ListItemIcon>
+								<ListItemText primary="News" />
+							</ListItemButton>
+						</Link>
+						<ListItemButton onClick={() => setReUser(!reUser)}>
+							<ListItemIcon>
+								<FaCircleUser size="1.5em" />
+							</ListItemIcon>
+							<ListItemText primary="User" />
+							{reUser ? <MdExpandLess /> : <MdExpandMore />}
+						</ListItemButton>
+						<Collapse in={reUser} timeout="auto" unmountOnExit>
+							<Link href="/user/customer">
+								<List component="div" disablePadding>
+									<ListItemButton sx={{ pl: 4 }}>
+										<ListItemIcon><BsDashLg /></ListItemIcon>
+										<ListItemText primary="Customer" />
+									</ListItemButton>
+								</List>
+							</Link>
+							<List component="div" disablePadding>
+								<ListItemButton sx={{ pl: 4 }}>
+									<ListItemIcon><BsDashLg /></ListItemIcon>
+									<ListItemText primary="Applicant" />
+								</ListItemButton>
+							</List>
+						</Collapse>
+						<ListItemButton onClick={handleLogout}>
+							<ListItemIcon>
+								<IoLogOutOutline size="1.5em" />
+							</ListItemIcon>
+							<ListItemText primary="Log out" />
+						</ListItemButton>
+					</List>
+				</Paper>
 			</Drawer>
 		</>
 	);

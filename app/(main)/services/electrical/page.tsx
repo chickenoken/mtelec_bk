@@ -1,3 +1,4 @@
+"use client"
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs"
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel"
 import { IProduct } from "@app/(main)/products/page"
@@ -6,7 +7,7 @@ import { MotionDiv } from "@components/motion/MotionDiv"
 import { Box, Button, Card, CardContent, Container, Typography } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import Image from "next/image"
-import { ReactNode } from "react"
+import React, { ReactNode, useEffect } from "react"
 import { LuDot } from "react-icons/lu"
 import { MdChevronRight } from "react-icons/md"
 
@@ -26,8 +27,34 @@ const AnimUp = ({ children }: { children: ReactNode }) => {
     </MotionDiv>
   );
 };
-const page = async () => {
-  const data = await getPElectricService();
+
+interface IElectricService {
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  image5: string;
+  image6: string;
+  image7: string;
+  wk1: string;
+  wk2: string;
+  wk3: string;
+  wk4: string;
+  wk5: string;
+}
+
+const page = () => {
+  const [data, setData] = React.useState<IElectricService>();
+
+  const getData = async () => {
+    let rs = await getPElectricService();
+    setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const itemData1 : IProduct[]  = [
     { _id: '1', company: '', title: 'AUTOMATION DESIGN AND INSTALLATION', path: '/asset/img/home/carousel1/carousel_1.png',},
     { _id: '1', company: '', title: 'SOLAR SYSTEM', path: '/asset/img/home/carousel1/carousel_2.jpg',},

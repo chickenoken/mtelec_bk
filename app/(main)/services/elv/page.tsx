@@ -1,28 +1,41 @@
+"use client"
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
 import { IProduct } from "@app/(main)/products/page";
-import { getPElvWorkingField } from "@app/user/pages/elv/_server/FormElvAction";
+import { getPElv, getPElvWorkingField } from "@app/user/pages/elv/_server/FormElvAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Button, Container, Typography } from "@mui/material";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdChevronRight } from "react-icons/md";
 import ImageLinks from "../_component/ImageLinks";
 import { IWorkingField } from "../automation/page";
 
-const page = async () => {
-	const workingField: IWorkingField[] = await getPElvWorkingField();
-	const itemData: IProduct[] = [
-		{ _id: "1", company: "", title: "Fire Alarm System", path: "/asset/img/service/elv/imgLink_1.png" },
-		{ _id: "1", company: "", title: "Fire Alarm System", path: "/asset/img/service/elv/imgLink_2.png" },
-		{
-			_id: "1",
-			company: "",
-			title: "Public Address and Telephone System",
-			path: "/asset/img/service/elv/imgLink_3.png",
-		},
-		{ _id: "1", company: "", title: "CCTV Control Panel", path: "/asset/img/service/elv/imgLink_4.png" },
-	];
+interface IElv {
+	name1: string;
+	image1: string;
+	name2: string;
+	image2: string;
+	name3: string;
+	image3: string;
+	name4: string;
+	image4: string;
+}
+
+const page = () => {
+	const [workingField, setWorkingField] = React.useState<IWorkingField[]>([]);
+	const [data, setData] = React.useState<IElv>();
+
+  const getData = async () => {
+    let rs = await getPElvWorkingField();
+    setWorkingField(rs);
+		rs = await getPElv();
+		setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
 	const itemData1: IProduct[] = [
 		{
@@ -129,7 +142,7 @@ const page = async () => {
 				)}
 				<AnimUp>
 					<Box className="mt-10">
-						<ImageLinks itemData={itemData} grid={6} />
+						<ImageLinks data={data} grid={6} start={1} num={4} />
 					</Box>
 					<Box>
 						<Button

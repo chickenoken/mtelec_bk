@@ -1,18 +1,49 @@
+"use client"
 import ContactUs from "@app/(main)/_component/Home/contactUs/ContactUs";
 import ImgCarousel from "@app/(main)/_component/Home/imgCarousel/ImgCarousel";
 import RenderWorkingField from "@app/(main)/_component/services/renderWorkingField";
 import { IProduct } from "@app/(main)/products/page";
-import { getPSolarWorkingField } from "@app/user/pages/solar/server/FormSolarAction";
+import { getPSolar, getPSolarWorkingField } from "@app/user/pages/solar/server/FormSolarAction";
 import { MotionDiv } from "@components/motion/MotionDiv";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
-import { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { MdChevronRight } from "react-icons/md";
 import ImageLinks from "../_component/ImageLinks";
 import { IWorkingField } from "../automation/page";
 
-const page = async () => {
-	const workingField: IWorkingField[] = await getPSolarWorkingField();
+interface IElectricDesign {
+	image1: string;
+	name2: string;
+	image2: string;
+	name3: string;
+	image3: string;
+	name4: string;
+	image4: string;
+	name5: string;
+	image5: string;
+	name6: string;
+	image6: string;
+	name7: string;
+	image7: string;
+}
+
+const page = () => {
+	const [workingField, setWorkingField] = React.useState<IWorkingField[]>([]);
+	const [data, setData] = React.useState<IElectricDesign>();
+
+  const getData = async () => {
+    let rs = await getPSolarWorkingField();
+    setWorkingField(rs);
+		rs = await getPSolar();
+		setData(rs);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+
 	const itemData: IProduct[] = [
 		{
 			_id: "1",
@@ -159,14 +190,14 @@ const page = async () => {
 					<Box className="flex justify-center mt-10 p-8">
 						<Image
 							className="mb-4"
-							src="/asset/img/service/solar/img_1.png"
+							src={data?.image1 ?? ""}
 							alt="alt"
 							width={800}
 							height={800}
 						/>
 					</Box>
 					<Box className="mt-10">
-						<ImageLinks itemData={itemData} grid={6} />
+						<ImageLinks data={data} grid={6} start={2} num={6} />
 					</Box>
 					<Box>
 						<Button

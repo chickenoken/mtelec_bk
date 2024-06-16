@@ -2,7 +2,7 @@ import { Box, Grid, Paper } from "@mui/material";
 import { Suspense } from "react";
 import FormAutomation from "./_component/FormAutomation";
 
-const page = async () => {
+const page = () => {
 	return (
 		<>
 			<Grid item xs={12} md={4} lg={3}>
